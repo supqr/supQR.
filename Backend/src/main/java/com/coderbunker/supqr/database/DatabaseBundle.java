@@ -21,9 +21,9 @@ public class DatabaseBundle extends JooqBundle<SupQrConfiguration> {
 	public PooledDataSourceFactory getDataSourceFactory(SupQrConfiguration configuration) {
 		DatabaseConfiguration dbConfig = configuration.getDatabase();
 		DataSourceFactory dataSourceFactory = new DataSourceFactory();
-		dataSourceFactory.setUrl("jdbc:mariadb://" + dbConfig.getHost() + ":" + dbConfig.getPort());
+		dataSourceFactory.setUrl("jdbc:mariadb://" + dbConfig.getUrl() + "?useMysqlMetadata=true");
 		dataSourceFactory.setUser(dbConfig.getUsername());
-		log.info("Connection to jdbc:mariadb://{}:{}. Authenticating as User {}.", dbConfig.getHost(), dbConfig.getPort(), dbConfig.getUsername());
+		log.info("Connection to jdbc:mariadb://{}. Authenticating as User {}.", dbConfig.getUrl(), dbConfig.getUsername());
 		dataSourceFactory.setPassword(dbConfig.getPassword());
 		dataSourceFactory.setDriverClass("org.mariadb.jdbc.Driver");
 		log.info("Driver is {}", dataSourceFactory.getDriverClass());

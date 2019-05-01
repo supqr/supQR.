@@ -15,8 +15,7 @@ public class DatabaseConfiguration {
 
 	private String username;
 	private String password;
-	private String host;
-	private int port;
+	private String url;
 
 	@NonNull
 	private ConnectionConfiguration connections;

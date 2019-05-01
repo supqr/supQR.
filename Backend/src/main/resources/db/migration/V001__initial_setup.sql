@@ -7,32 +7,30 @@ CREATE TABLE user
     email         varchar(255) NOT NULL,
     password      varchar(255) NOT NULL,
     locked        boolean,
+    admin         boolean,
     lockingReason varchar(255)
-);
-
-CREATE TABLE admin
-(
-    admin_id INT                 NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL
 );
 
 CREATE TABLE article
 (
     article_id INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title      VARCHAR(255) NOT NULL UNIQUE,
-    user_id    INT          NOT NULL, -- author
+    author_id  INT          NOT NULL,
     rating_id  INT          NOT NULL UNIQUE,
 
-    FOREIGN KEY (user_id) REFERENCES user (user_id),
+    FOREIGN KEY (author_id) REFERENCES user (user_id),
     FOREIGN KEY (rating_id) REFERENCES rating (rating_id)
 );
 
 CREATE TABLE feedback
 (
     feedback_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id     INT NOT NULL,
+    feedback_author_id     INT NOT NULL,
     article_id  INT NOT NULL,
-    text        TEXT
+    text        TEXT,
+
+    FOREIGN KEY (feedback_author_id) REFERENCES user (user_id),
+    FOREIGN KEY (article_id) REFERENCES article (article_id)
 );
 
 CREATE TABLE content

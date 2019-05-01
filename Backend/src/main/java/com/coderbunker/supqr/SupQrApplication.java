@@ -4,22 +4,20 @@
 
 package com.coderbunker.supqr;
 
+import com.coderbunker.supqr.database.DatabaseBundle;
+import com.coderbunker.supqr.database.DatabaseMigrationBundle;
+import com.coderbunker.supqr.rest.resource.TestResource;
+import io.dropwizard.Application;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import org.apache.commons.io.IOUtils;
-
-import com.coderbunker.supqr.database.DatabaseBundle;
-import com.coderbunker.supqr.rest.resource.TestResource;
-
-import lombok.extern.slf4j.Slf4j;
-
-import io.dropwizard.Application;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
 
 @Slf4j
 public class SupQrApplication extends Application<SupQrConfiguration> {
@@ -46,7 +44,9 @@ public class SupQrApplication extends Application<SupQrConfiguration> {
 
 	@Override
 	public void initialize (Bootstrap<SupQrConfiguration> bootstrap) {
-		bootstrap.addBundle(new DatabaseBundle());
+		DatabaseBundle database = new DatabaseBundle();
+		bootstrap.addBundle(database);
+		bootstrap.addBundle(new DatabaseMigrationBundle(database));
 	}
 
 	@Override

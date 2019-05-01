@@ -1,33 +1,146 @@
-.App {
-  text-align: center;
+html {
+  background-color: #F8F8F8;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+a {
+  text-decoration: none;
+  margin-right: 3%;
+  margin-left: 3%;
+  color: white;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+/*
+a:hover{
+  TODO
+}
+*/
+.navActive {
+  color: #B8CAFF;
+}
+/*
+.navActive:hover{
+  TODO
+}
+*/
+.Header {
+  background-color:#D8E2FF;
+  
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  display: flex;
+
+  padding-bottom: 1%;
+  padding-top: 1%;
+}
+
+.Logo {
+  width: 7%;
+}
+
+.Body {
+  padding-right: 33%;
+  padding-left: 33%;
+}
+
+.Title {
+  margin-top: 7%;
+  color: #BBBBBB;
+  text-decoration: underline;
+}
+
+input {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+
+  padding-bottom: 0.5%; 
+  padding-top: 0.5%;
+  padding-right: 1%;
+  padding-left: 1%;
+
+  border: none;
+}
+
+.Input {
+  background-color: #F1F1F1;
+  width: 75%;
+}
+
+.Button {
+  background-color: #D8E2FF;
+  margin-left: 1%;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Button:hover{
+  color:#D8E2FF;
+  background-color: white;
+  border: 1px solid #D8E2FF;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  padding-bottom: 3%; 
+  padding-top: 3%;
+  width: 50%;
+
+  border: none;
 }
+
+.buttonEdit {
+  background-color: #D8E2FF;
+  color: white;
+}
+
+.buttonEdit:hover{
+  color:#D8E2FF;
+  background-color: white;
+  border: 1px solid #D8E2FF;
+}
+
+.buttonDelete {
+  background-color: white;
+  color: #B8CAFF;
+}
+
+.buttonDelete:hover{
+  color:#D8E2FF;
+  background-color: white;
+  border: 1px solid #D8E2FF;
+}
+
+.objectName {
+  color: #BBBBBB;
+  text-decoration: underline;
+  margin-top: 0;
+  margin-bottom: 10%;
+}
+
+.Icon {
+  margin-top: 5%;
+}
+
+.Object {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);;
+  border: 1px solid #707070;
+  background-color: white;
+  padding: 3%;
+  width: 65%;
+  margin-bottom: 25%;
+  
+  justify-content: center;
+  text-align: center;
+}
+
+.Objects {
+  margin:0;
+}
+
+.leftObjects{
+  float:left;
+  width:50%;
+  overflow:hidden;
+}
+
+.rightObjects{
+  float:left;
+  width:50%;
+  overflow:hidden;
+} 

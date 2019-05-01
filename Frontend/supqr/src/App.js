@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ObjectOverview from './ObjectOverview';
 
 function App() {
+
+  //OPEN STARTPAGE
   return (
-    <div className="App">
-      <p>Testproject</p>
-    </div >
+    <ObjectOverview />
   );
 }
 

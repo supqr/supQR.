@@ -27,7 +27,7 @@ CREATE TABLE feedback
     feedback_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     feedback_author_id     INT NOT NULL,
     article_id  INT NOT NULL,
-    text        TEXT,
+    text_value        TEXT,
 
     FOREIGN KEY (feedback_author_id) REFERENCES user (user_id),
     FOREIGN KEY (article_id) REFERENCES article (article_id)
@@ -54,7 +54,7 @@ CREATE TABLE media_content
 CREATE TABLE text_content
 (
     text_content_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    text            TEXT,
+    text_value            TEXT,
     content_id      INT,
 
     FOREIGN KEY (content_id) REFERENCES content (content_id)

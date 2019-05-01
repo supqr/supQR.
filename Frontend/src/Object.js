@@ -3,6 +3,14 @@ import './App.css';
 
 export default class Object extends Component {
 
+    editObject = () => {
+        console.log("TODO: DETAILANSICHT")
+    }
+
+    deleteObject = () => {
+        console.log("TODO: DELETE")
+    }
+
     render() {
         return (
             <div className='Object'>

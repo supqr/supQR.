@@ -40,14 +40,6 @@ export default class ObjectOverview extends Component {
 
     }
 
-    editObject = () => {
-        console.log("TODO: DETAILANSICHT")
-    }
-
-    deleteObject = () => {
-        console.log("TODO: DELETE")
-    }
-
     render() {
         return (
             <div>

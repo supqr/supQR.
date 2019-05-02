@@ -8,7 +8,17 @@ export default class ObjectOverview extends Component {
     constructor() {
         super()
         this.state = {
-            objects: [],
+            objectsLeft: [
+                { id: '1', name: 'Coffee' },
+                { id: '3', name: 'Table' },
+                { id: '5', name: 'Tea' },
+                { id: '7', name: 'Fridge' },
+            ],
+            objectsRight: [
+                { id: '2', name: 'Fish' },
+                { id: '4', name: 'Cake' },
+                { id: '6', name: 'Mixer' },
+            ],
             newObject: ""
         }
     }
@@ -27,7 +37,21 @@ export default class ObjectOverview extends Component {
 
     handleAddObject = (event) => {
 
-        console.log("TODO: ADD " + this.state.newObject)
+        //TODO: UPLOAD WITH ID
+        if (this.state.objectsRight < this.state.objectsLeft) {
+
+            var objectsRight = this.state.objectsRight
+            objectsRight.push({ id: '999', name: this.state.newObject })
+            this.setState({ objectsRight })
+
+        } else {
+
+            var objectsLeft = this.state.objectsLeft
+            objectsLeft.push({ id: '999', name: this.state.newObject })
+            this.setState({ objectsLeft })
+
+        }
+        //TODO: UNLOAD STATE
         event.preventDefault()
 
     }
@@ -44,7 +68,7 @@ export default class ObjectOverview extends Component {
         return (
             <div>
 
-                <Header />
+                <Header active='object' />
 
                 <div className='Body'>
 
@@ -60,15 +84,18 @@ export default class ObjectOverview extends Component {
                     <div className='Objects'>
                         <div className='leftObjects'>
 
-                            <Object />
-                            <Object />
-                            <Object />
+                            {this.state.objectsLeft.map((item) =>
+
+                                <Object name={item.name} id={item.id} />
+                            )}
 
                         </div>
                         <div className='rightObjects'>
 
-                            <Object />
-                            <Object />
+                            {this.state.objectsRight.map((item) =>
+
+                                <Object name={item.name} id={item.id} />
+                            )}
 
                         </div>
                     </div>

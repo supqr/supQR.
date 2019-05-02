@@ -1,12 +1,13 @@
 import React from 'react';
-import ObjectOverview from './ObjectOverview';
+import Ranking from './Ranking';
 
 function App() {
 
   //OPEN STARTPAGE
   return (
-    <ObjectOverview />
+    <Ranking />
   );
+
 }
 
 export default App;

@@ -1,11 +1,11 @@
 import React from 'react';
-import Ranking from './Ranking';
+import ObjectDetail from './ObjectDetail';
 
 function App() {
 
   //OPEN STARTPAGE
   return (
-    <Ranking />
+    <ObjectDetail />
   );
 
 }

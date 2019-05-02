@@ -4,9 +4,10 @@
 
 package com.coderbunker.supqr;
 
+import com.coderbunker.supqr.annotation.Registered;
 import com.coderbunker.supqr.database.DatabaseBundle;
 import com.coderbunker.supqr.database.DatabaseMigrationBundle;
-import com.coderbunker.supqr.rest.resource.ExampleResource;
+import com.coderbunker.supqr.util.ReflectionUtil;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -60,7 +61,9 @@ public class SupQrApplication extends Application<SupQrConfiguration> {
 				.build()
 		);
 
-		environment.jersey().register(ExampleResource.class);
+		ReflectionUtil
+			.findClasses(Registered.class)
+			.forEach(clazz -> environment.jersey().register(clazz));
 	}
 
 }

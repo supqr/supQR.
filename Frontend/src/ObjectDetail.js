@@ -8,7 +8,7 @@ export default class ObjectDetail extends Component {
             <div>
 
                 <Header />
-                <p>TODO</p>
+                <p>I'm starting</p>
 
             </div >
         );

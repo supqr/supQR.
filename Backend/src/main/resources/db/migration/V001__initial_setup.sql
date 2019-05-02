@@ -11,6 +11,14 @@ CREATE TABLE user
     lockingReason varchar(255)
 );
 
+CREATE TABLE rating
+(
+    rating_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    views     INT,
+    upvotes   INT,
+    downvotes INT
+);
+
 CREATE TABLE article
 (
     article_id INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -58,12 +66,4 @@ CREATE TABLE text_content
     content_id      INT,
 
     FOREIGN KEY (content_id) REFERENCES content (content_id)
-);
-
-CREATE TABLE rating
-(
-    rating_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    views     INT,
-    upvotes   INT,
-    downvotes INT
 );

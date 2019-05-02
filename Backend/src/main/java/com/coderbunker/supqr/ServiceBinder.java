@@ -4,9 +4,12 @@
 
 package com.coderbunker.supqr;
 
+import com.coderbunker.supqr.database.ExampleRepository;
+import com.coderbunker.supqr.service.ExampleService;
+import lombok.Builder;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
-import lombok.Builder;
+import javax.inject.Singleton;
 
 @Builder
 public class ServiceBinder extends AbstractBinder {
@@ -16,5 +19,8 @@ public class ServiceBinder extends AbstractBinder {
 	@Override
 	protected void configure () {
 		bind(this.config).to(SupQrConfiguration.class);
+
+		bindAsContract(ExampleService.class).in(Singleton.class);
+		bindAsContract(ExampleRepository.class).in(Singleton.class);
 	}
 }

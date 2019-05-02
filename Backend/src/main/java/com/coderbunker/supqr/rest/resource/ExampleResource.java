@@ -4,6 +4,7 @@
 
 package com.coderbunker.supqr.rest.resource;
 
+import com.coderbunker.supqr.annotation.Registered;
 import com.coderbunker.supqr.service.ExampleService;
 import lombok.RequiredArgsConstructor;
 
@@ -13,6 +14,7 @@ import javax.ws.rs.Path;
 
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Path("/test")
+@Registered
 public class ExampleResource {
 
 	private final ExampleService exampleService;

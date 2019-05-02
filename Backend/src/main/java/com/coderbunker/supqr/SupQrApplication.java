@@ -13,12 +13,14 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.glassfish.jersey.servlet.ServletContainer;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Optional;
 
 @Slf4j
 public class SupQrApplication extends Application<SupQrConfiguration> {
@@ -64,6 +66,15 @@ public class SupQrApplication extends Application<SupQrConfiguration> {
 		ReflectionUtil
 			.findClasses(Registered.class)
 			.forEach(clazz -> environment.jersey().register(clazz));
+	}
+
+	public <T> T getService (Class<T> clazz, Environment environment) {
+		return Optional.ofNullable(((ServletContainer) environment
+			.getJerseyServletContainer()))
+			.orElseThrow(() -> new RuntimeException("Cannot find servlet container"))
+			.getApplicationHandler()
+			.getServiceLocator()
+			.getService(clazz);
 	}
 
 }

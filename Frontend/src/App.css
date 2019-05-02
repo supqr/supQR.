@@ -1,0 +1,221 @@
+html {
+  background-color: #F8F8F8;
+}
+
+a {
+  text-decoration: none;
+  margin-right: 3%;
+  margin-left: 3%;
+  color: white;
+}
+/*
+a:hover{
+  TODO
+}
+*/
+.navActive {
+  color: #B8CAFF;
+}
+/*
+.navActive:hover{
+  TODO
+}
+*/
+.Header {
+  background-color:#D8E2FF;
+  
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+
+  padding-bottom: 1%;
+  padding-top: 1%;
+}
+
+.Logo {
+  width: 7%;
+}
+
+.Body {
+  padding-right: 33%;
+  padding-left: 33%;
+  padding-bottom: 5%;
+}
+
+.Title {
+  margin-top: 7%;
+  color: #BBBBBB;
+  text-decoration: underline;
+}
+
+input {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+
+  padding-bottom: 0.5%; 
+  padding-top: 0.5%;
+  padding-right: 1%;
+  padding-left: 1%;
+
+  border: none;
+}
+
+.Input {
+  background-color: #F1F1F1;
+  width: 75%;
+}
+
+.Button {
+  background-color: #D8E2FF;
+  margin-left: 1%;
+  color: white;
+}
+
+.Button:hover{
+  color:#D8E2FF;
+  background-color: white;
+  border: 1px solid #D8E2FF;
+}
+
+button {
+  padding-bottom: 3%; 
+  padding-top: 3%;
+  width: 50%;
+
+  border: none;
+}
+
+.buttonMore {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  background-color: #D8E2FF;
+  padding-bottom: 2%; 
+  padding-top: 2%;
+  color: white;
+  width: 15%;
+  margin-left: 42.5%;
+}
+
+.buttonMore:hover {
+  color:#D8E2FF;
+  background-color: white;
+  border: 1px solid #D8E2FF;
+}
+
+.buttonEdit {
+  background-color: #D8E2FF;
+  color: white;
+}
+
+.buttonEdit:hover{
+  color:#D8E2FF;
+  background-color: white;
+  border: 1px solid #D8E2FF;
+}
+
+.buttonDelete {
+  background-color: white;
+  color: #B8CAFF;
+}
+
+.buttonDelete:hover{
+  color:#D8E2FF;
+  background-color: white;
+  border: 1px solid #D8E2FF;
+}
+
+.objectName {
+  color: #BBBBBB;
+  text-decoration: underline;
+  margin-top: 0;
+  margin-bottom: 10%;
+}
+
+.Icon {
+  margin-top: 5%;
+}
+
+.Object {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);;
+  border: 1px solid #707070;
+  background-color: white;
+  padding: 3%;
+  width: 65%;
+  margin-bottom: 25%;
+  
+  justify-content: center;
+  text-align: center;
+}
+
+.RankingEntry{
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);;
+  border: 1px solid #707070;
+  background-color: white;
+  padding: 1%;
+  margin-bottom: 3%;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.RankingEntryPersonal {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);;
+  border: 1px solid #707070;
+  background-color: #F1F1F1;
+  padding: 1%;
+  margin-bottom: 3%;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.RankingEntry:hover {
+  background-color: #D8E2FF;
+}
+
+.RankingEntryPersonal:hover {
+  background-color: #D8E2FF;
+}
+
+.RankingEntry p, .RankingEntryPersonal p { 
+  padding: 0;
+  margin: 0;
+}
+
+.columnRanking1{
+  padding: 0;
+  width: 5%;
+}
+
+.columnRanking1 img{
+  width: 100%;
+}
+
+.columnRanking2{
+  color: #BBBBBB;
+  text-align: left;
+  padding: 0;
+  padding-left: 1%;
+  width: 80%;
+}
+
+.columnRanking3{
+  padding: 0;
+  width: 15%;
+  color: #B8CAFF;
+}
+
+.Objects {
+  margin:0;
+}
+
+.leftObjects{
+  float:left;
+  width:50%;
+  overflow:hidden;
+}
+
+.rightObjects{
+  float:left;
+  width:50%;
+  overflow:hidden;
+} 

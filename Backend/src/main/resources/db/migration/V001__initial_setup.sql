@@ -7,7 +7,7 @@ CREATE TABLE user
     email         varchar(255) NOT NULL,
     password      varchar(255) NOT NULL,
     locked        boolean,
-    admin         boolean,
+    admin         boolean      NOT NULL DEFAULT FALSE,
     lockingReason varchar(255)
 );
 
@@ -48,7 +48,8 @@ CREATE TABLE content
     order_id   INT                    NOT NULL,
     type       ENUM ('MEDIA', 'TEXT') NOT NULL,
 
-    FOREIGN KEY (article_id) REFERENCES article (article_id)
+    FOREIGN KEY (article_id) REFERENCES article (article_id),
+    UNIQUE (article_id, order_id)
 );
 
 CREATE TABLE media_content

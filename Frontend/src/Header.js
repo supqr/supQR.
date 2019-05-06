@@ -10,22 +10,18 @@ export default class Header extends Component {
                 <div className='Header'>
                     <img src={require('./assets/logo.png')} alt='supQR.' className='Logo' />
                     <nav>
-                        <a href="Home">HOME</a>
+                        <a href="Object" className="navActive">OBJECT</a>
                         |
-                        <a href="ObjectOverview" className="navActive">OBJECT</a>
-                        |
-                        <a href="Ranking">RANKING</a>
+                        <a href="Ranking" >RANKING</a>
                     </nav>
-                </div>
+                </div >
             )
         } else if (this.props.active === 'ranking') {
             return (
                 <div className='Header'>
                     <img src={require('./assets/logo.png')} alt='supQR.' className='Logo' />
                     <nav>
-                        <a href="Home">HOME</a>
-                        |
-                        <a href="ObjectOverview">OBJECT</a>
+                        <a href="Object">OBJECT</a>
                         |
                         <a href="Ranking" className="navActive">RANKING</a>
                     </nav>
@@ -53,21 +49,7 @@ export default class Header extends Component {
                     </nav>
                 </div>
             )
-        } else {
-            return (
-                <div className='Header'>
-                    <img src={require('./assets/logo.png')} alt='supQR.' className='Logo' />
-                    <nav>
-                        <a href="Home">HOME</a>
-                        |
-                        <a href="ObjectOverview">OBJECT</a>
-                        |
-                        <a href="Ranking">RANKING</a>
-                    </nav>
-                </div>
-            )
         }
-
     }
 
 }

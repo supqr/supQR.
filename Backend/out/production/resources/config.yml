@@ -1,0 +1,29 @@
+database:
+  username: root
+  password: abc123
+  url: localhost:3306/supqr
+  connections:
+    minPoolSize: 2
+    maxPoolSize: 20
+
+server:
+  requestLog:
+    appenders: []
+  applicationConnectors:
+    - type: http
+      port: 80
+
+logging:
+  level: INFO
+  appenders:
+    - type: console
+      target: stdout
+      timeZone: Asia/Shanghai
+      logFormat: "%highlight(%-5level) %boldWhite([%date{yyyy-MM-dd HH:mm:ss}]) %cyan(%logger) %boldMagenta(-) %message%n%rEx"
+    - type: file
+      threshold: ALL
+      currentLogFilename: ./SupQR/logs/latest.log
+      archivedLogFilenamePattern: ./SupQR/logs/archived-%d{yyyy-MM-dd}.log.gz
+      archivedFileCount: 20
+      timeZone: Asia/Shanghai
+      logFormat: "%-5level [%date{yyyy-MM-dd HH:mm:ss}] %logger - %message%n%rEx"

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 import Object from './Object';
-import { Button, ButtonToolbar } from 'react-bootstrap';
-
 
 export default class ObjectOverview extends Component {
 
@@ -70,7 +68,7 @@ export default class ObjectOverview extends Component {
         return (
             <div>
 
-                <Header active='object' />
+                <Header />
 
                 <div className='Body'>
 
@@ -81,7 +79,7 @@ export default class ObjectOverview extends Component {
                         <input type='submit' value='ADD' className='Button' />
                     </form>
 
-                    <p className='Title'>FILTER</p>
+                    <p className='Title' />
 
                     <div className='Objects'>
                         <div className='leftObjects'>
@@ -89,6 +87,7 @@ export default class ObjectOverview extends Component {
                             {this.state.objectsLeft.map((item) =>
 
                                 <Object name={item.name} id={item.id} />
+
                             )}
 
                         </div>
@@ -97,6 +96,7 @@ export default class ObjectOverview extends Component {
                             {this.state.objectsRight.map((item) =>
 
                                 <Object name={item.name} id={item.id} />
+
                             )}
 
                         </div>

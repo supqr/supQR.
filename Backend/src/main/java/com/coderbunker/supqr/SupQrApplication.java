@@ -63,6 +63,7 @@ public class SupQrApplication extends Application<SupQrConfiguration> {
 	public void run (SupQrConfiguration configuration, Environment environment) {
 		environment.jersey().setUrlPattern("/api/*");
 
+		initializeAuthentication(environment);
 		environment.jersey().register(
 			ServiceBinder
 				.builder()

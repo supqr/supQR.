@@ -58,12 +58,12 @@ INSERT INTO content(article_id, order_id, type) VALUES(7, 1, 'MEDIA');
 INSERT INTO content(article_id, order_id, type) VALUES(8, 1, 'TEXT');
 INSERT INTO content(article_id, order_id, type) VALUES(8, 2, 'MEDIA');
 
-INSERT INTO media_content(content_id) VALUES(1);
-INSERT INTO media_content(content_id) VALUES(4);
-INSERT INTO media_content(content_id) VALUES(8);
-INSERT INTO media_content(content_id) VALUES(12);
-INSERT INTO media_content(content_id) VALUES(14);
-INSERT INTO media_content(content_id) VALUES(16);
+INSERT INTO media_content(content_id, media, video) VALUES(1, 'test', FALSE);
+INSERT INTO media_content(content_id, media, video) VALUES(4, 'test', FALSE);
+INSERT INTO media_content(content_id, media, video) VALUES(8, 'test', FALSE);
+INSERT INTO media_content(content_id, media, video) VALUES(12, 'test', FALSE);
+INSERT INTO media_content(content_id, media, video) VALUES(14, 'test', FALSE);
+INSERT INTO media_content(content_id, media, video) VALUES(16, 'test', FALSE);
 
 INSERT INTO text_content(text_value, content_id) VALUES('you press coffee button', 2);
 INSERT INTO text_content(text_value, content_id) VALUES('flush by using thing', 3);

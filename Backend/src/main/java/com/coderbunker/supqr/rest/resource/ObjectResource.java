@@ -2,17 +2,18 @@ package com.coderbunker.supqr.rest.resource;
 
 import com.coderbunker.supqr.annotation.Registered;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
+import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.service.ObjectService;
-
 import lombok.RequiredArgsConstructor;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @Registered
@@ -25,11 +26,22 @@ public class ObjectResource {
 	private final ObjectService objectService;
 
 	@GET
-	@Path("/me")
+	@Path("me")
 	public List<ObjectSummaryTO> getMyObjects () {
 		int id = 2; // temporary
 
 		return objectService.getObjectsForUser(id);
 	}
 
+	@GET
+	@Path("{objectId}")
+	public ObjectTO getObject (@PathParam("objectId") Integer objectId) {
+		return objectService.getObject(objectId);
+	}
+
+	@GET
+	@Path("media/{mediaId}")
+	public ByteArrayInputStream getMedia (@PathParam("mediaId") Integer mediaId) {
+		return objectService.getMedia(mediaId);
+	}
 }

@@ -1,11 +1,16 @@
 import React from 'react';
-import ObjectDetail from './ObjectDetail';
+import Object from './ObjectOverview';
+import Ranking from './Ranking';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
 
   //OPEN STARTPAGE
   return (
-    <ObjectDetail />
+    <Router>
+      <Route path={'/object'} component={Object} />
+      <Route path={'/ranking'} component={Ranking} />
+    </Router>
   );
 
 }

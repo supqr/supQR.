@@ -1,5 +1,5 @@
 import React from 'react';
-import Object from './ObjectDetailEdit';
+import Object from './ObjectOverview';
 
 function App() {
 

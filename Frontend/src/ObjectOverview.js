@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 import Object from './Object';
+import { Button, ButtonToolbar } from 'react-bootstrap';
+
 
 export default class ObjectOverview extends Component {
 
@@ -101,7 +103,6 @@ export default class ObjectOverview extends Component {
                     </div>
 
                 </div>
-
             </div >
         )
     }

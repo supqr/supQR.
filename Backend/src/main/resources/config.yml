@@ -1,3 +1,5 @@
+sessionDuration: 4
+
 database:
   username: root
   password: abc123

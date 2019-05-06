@@ -17,6 +17,7 @@ import io.dropwizard.Configuration;
 @NoArgsConstructor
 public class SupQrConfiguration extends Configuration {
 
+	private int sessionDuration;
 	@NotNull
 	private DatabaseConfiguration database;
 

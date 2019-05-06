@@ -5,23 +5,23 @@ INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('
 INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('jsins', 'Johnathan', 'Sins', 'jsins@gmail.com', 'pw', FALSE);
 INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('guenthermint', 'Guenther', 'Mint', 'mint@yahoo.com', 'pw', TRUE);
 
-INSERT INTO rating(views, upvotes, downvotes) VALUES(298, 193, 27);
-INSERT INTO rating(views, upvotes, downvotes) VALUES(481, 398, 72);
-INSERT INTO rating(views, upvotes, downvotes) VALUES(748, 592, 194);
-INSERT INTO rating(views, upvotes, downvotes) VALUES(71, 2, 32);
-INSERT INTO rating(views, upvotes, downvotes) VALUES(184, 89, 12);
+INSERT INTO article(title, author_id, views) VALUES('Coffee Machine', 2, 69);
+INSERT INTO article(title, author_id, views) VALUES('Pasta', 2, 69);
+INSERT INTO article(title, author_id, views) VALUES('Specki', 2, 23);
+INSERT INTO article(title, author_id, views) VALUES('Towels', 2, 466);
+INSERT INTO article(title, author_id, views) VALUES('Toilet', 6, 23);
+INSERT INTO article(title, author_id, views) VALUES('Dish Washer', 4, 56);
+INSERT INTO article(title, author_id, views) VALUES('Printer', 3, 56);
+INSERT INTO article(title, author_id, views) VALUES('Water Dispenser', 5, 32);
 
-INSERT INTO article(title, author_id, rating_id) VALUES('Coffee Machine', 2, 1);
-INSERT INTO article(title, author_id, rating_id) VALUES('Toilet', 6, 2);
-INSERT INTO article(title, author_id, rating_id) VALUES('Dish Washer', 4, 3);
-INSERT INTO article(title, author_id, rating_id) VALUES('Printer', 3, 4);
-INSERT INTO article(title, author_id, rating_id) VALUES('Water Dispenser', 5, 5);
-
-INSERT INTO feedback(feedback_author_id, article_id, text_value) VALUES(6, 1, 'wow very mint');
-INSERT INTO feedback(feedback_author_id, article_id, text_value) VALUES(2, 2, 'my name is teo and i approve');
-INSERT INTO feedback(feedback_author_id, article_id, text_value) VALUES(3, 3, 'season 3 was the best');
-INSERT INTO feedback(feedback_author_id, article_id, text_value) VALUES(5, 4, 'As a teacher I think of this as insufficient.');
-INSERT INTO feedback(feedback_author_id, article_id, text_value) VALUES(4, 5, '5/7 perfect score');
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(6, 1, 'wow very mint', 1, 0);
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(2, 1, 'wow very mint', 1, 0);
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(1, 1, 'wow very mint', 1, 0);
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(1, 1, 'wow very mint', 1, 0);
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(1, 2, 'my name is teo and i approve', 1, 0);
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(3, 3, 'season 3 was the best', 0, 0);
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(5, 4, 'As a teacher I think of this as insufficient.', 0, 1);
+INSERT INTO feedback(feedback_author_id, article_id, text_value, upvote, resolved) VALUES(4, 5, '5/7 perfect score', 0, 1);
 
 INSERT INTO content(article_id, order_id, type) VALUES(1, 1, 'MEDIA');
 INSERT INTO content(article_id, order_id, type) VALUES(1, 2, 'TEXT');

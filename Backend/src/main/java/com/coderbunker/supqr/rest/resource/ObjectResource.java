@@ -27,7 +27,7 @@ public class ObjectResource {
 	@GET
 	@Path("/me")
 	public List<ObjectSummaryTO> getMyObjects () {
-		int id = 2;
+		int id = 2; // temporary
 
 		return objectService.getObjectsForUser(id);
 	}

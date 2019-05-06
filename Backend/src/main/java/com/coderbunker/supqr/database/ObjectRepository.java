@@ -24,7 +24,6 @@ public class ObjectRepository extends AbstractRepository {
 	}
 
 	public List<Article> getArticlesByUserId (int userId) {
-
 		return getContext()
 			.select()
 			.from(ARTICLE)

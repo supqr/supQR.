@@ -1,11 +1,11 @@
 import React from 'react';
-import ObjectDetail from './ObjectDetail';
+import Object from './ObjectOverview';
 
 function App() {
 
   //OPEN STARTPAGE
   return (
-    <ObjectDetail />
+    <Object />
   );
 
 }

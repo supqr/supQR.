@@ -5,6 +5,7 @@ export default class Object extends Component {
 
     editObject = () => {
         console.log("TODO: DETAILANSICHT" + this.props.id)
+
     }
 
     deleteObject = () => {

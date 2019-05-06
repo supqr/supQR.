@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 
-export default class ObjectDetail extends Component {
+export default class ObjectDetailEdit extends Component {
 
     constructor() {
         super()
@@ -26,8 +26,6 @@ export default class ObjectDetail extends Component {
                         <input type="file" className='Input' />
                         <input type='submit' value='SAVE' className='ButtonSave' />
                     </form>
-
-
 
                 </div>
 

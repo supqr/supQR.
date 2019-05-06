@@ -10,7 +10,7 @@ import java.util.Set;
 public class ReflectionUtil {
 
 	public static Set<Class<?>> findClasses (Class<? extends Annotation> clazz) {
-		Reflections reflections = new Reflections("ch.jooel.smarttype");
+		Reflections reflections = new Reflections("com.coderbunker.supqr");
 		Set<Class<?>> classes = reflections.getTypesAnnotatedWith(clazz);
 		log.info("Found {} classes annotated with @{}", classes.size(), clazz.getSimpleName());
 		return classes;

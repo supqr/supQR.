@@ -2,3 +2,5 @@
 Backend/.gradle
 build
 Backend/SupQR
+Backend/out
+Backend/build

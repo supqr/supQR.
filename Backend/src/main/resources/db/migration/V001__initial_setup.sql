@@ -11,23 +11,13 @@ CREATE TABLE user
     lockingReason varchar(255)
 );
 
-CREATE TABLE rating
-(
-    rating_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    views     INT,
-    upvotes   INT,
-    downvotes INT
-);
-
 CREATE TABLE article
 (
     article_id INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title      VARCHAR(255) NOT NULL UNIQUE,
     author_id  INT          NOT NULL,
-    rating_id  INT          NOT NULL UNIQUE,
 
-    FOREIGN KEY (author_id) REFERENCES user (user_id),
-    FOREIGN KEY (rating_id) REFERENCES rating (rating_id)
+    FOREIGN KEY (author_id) REFERENCES user (user_id)
 );
 
 CREATE TABLE feedback

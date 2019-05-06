@@ -5,14 +5,21 @@
 package com.coderbunker.supqr;
 
 import com.coderbunker.supqr.annotation.Registered;
+import com.coderbunker.supqr.auth.JwtAuthenticator;
+import com.coderbunker.supqr.auth.User;
+import com.coderbunker.supqr.auth.UserAuthorizer;
 import com.coderbunker.supqr.database.DatabaseBundle;
 import com.coderbunker.supqr.database.DatabaseMigrationBundle;
 import com.coderbunker.supqr.util.ReflectionUtil;
 import io.dropwizard.Application;
+import io.dropwizard.auth.AuthDynamicFeature;
+import io.dropwizard.auth.AuthValueFactoryProvider;
+import io.dropwizard.auth.oauth.OAuthCredentialAuthFilter;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.servlet.ServletContainer;
 
 import java.io.File;
@@ -76,5 +83,18 @@ public class SupQrApplication extends Application<SupQrConfiguration> {
 			.getServiceLocator()
 			.getService(clazz);
 	}
+
+	private void initializeAuthentication (Environment environment) {
+		environment.jersey().register(
+			new AuthDynamicFeature(
+				new OAuthCredentialAuthFilter.Builder<User>()
+					.setAuthenticator(new JwtAuthenticator())
+					.setAuthorizer(new UserAuthorizer())
+					.setPrefix("Bearer")
+					.buildAuthFilter()));
+		environment.jersey().register(RolesAllowedDynamicFeature.class);
+		environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
+	}
+
 
 }

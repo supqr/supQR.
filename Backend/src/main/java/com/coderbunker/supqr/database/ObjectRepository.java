@@ -50,7 +50,6 @@ public class ObjectRepository extends AbstractRepository {
 		List<ContentTO> content = getContext()
 			.select()
 			.from(CONTENT)
-//			.leftJoin(MEDIA_CONTENT).onKey()
 			.leftJoin(TEXT_CONTENT).on(TEXT_CONTENT.CONTENT_ID.eq(CONTENT.CONTENT_ID))
 			.leftJoin(MEDIA_CONTENT).on(MEDIA_CONTENT.CONTENT_ID.eq(CONTENT.CONTENT_ID))
 			.fetch(this::toContentTO);

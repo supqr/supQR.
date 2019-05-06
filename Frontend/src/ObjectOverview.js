@@ -2,28 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 import Object from './Object';
+import { Container, Row, Col } from 'react-bootstrap';
 
 export default class ObjectOverview extends Component {
 
     constructor() {
         super()
         this.state = {
-            objectsLeft: [
-                { id: '1', name: 'Coffee' },
-                { id: '3', name: 'Table' },
-                { id: '5', name: 'Tea' },
-                { id: '7', name: 'Fridge' },
-            ],
-            objectsRight: [
-                { id: '2', name: 'Fish' },
-                { id: '4', name: 'Cake' },
-                { id: '6', name: 'Mixer' },
-            ],
-            newObject: ""
+            objects: [],
+            newObject: "",
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
 
         this.readObjects()
 
@@ -31,7 +22,9 @@ export default class ObjectOverview extends Component {
 
     readObjects = async () => {
 
-        console.log("TODO: READ OBJECTS")
+        fetch("http://localhost:80/api/object/me")
+            .then(response => response.json())
+            .then(objects => this.setState({ objects }))
 
     }
 
@@ -69,40 +62,28 @@ export default class ObjectOverview extends Component {
             <div>
 
                 <Header />
+                <Container>
+                    <Row>
+                        <Col></Col>
+                        <Col xs={6} className='Content'>
 
-                <div className='Body'>
+                            <form onSubmit={this.handleAddObject} className='AddObject'>
+                                <p className='Title'>NEW OBJECT</p>
+                                <input type='text' value={this.state.newObject} onChange={this.handleChangeNewObject} className='Input' />
+                                <input type='submit' value='ADD' className='Button' />
+                            </form>
 
-                    <p className='Title'>NEW OBJECT</p>
+                            {this.state.objects.map((item) =>
 
-                    <form onSubmit={this.handleAddObject}>
-                        <input type='text' value={this.state.newObject} onChange={this.handleChangeNewObject} className='Input' />
-                        <input type='submit' value='ADD' className='Button' />
-                    </form>
-
-                    <p className='Title' />
-
-                    <div className='Objects'>
-                        <div className='leftObjects'>
-
-                            {this.state.objectsLeft.map((item) =>
-
-                                <Object name={item.name} id={item.id} />
+                                <Object item={item} />
 
                             )}
 
-                        </div>
-                        <div className='rightObjects'>
+                        </Col>
+                        <Col></Col>
+                    </Row>
+                </Container>
 
-                            {this.state.objectsRight.map((item) =>
-
-                                <Object name={item.name} id={item.id} />
-
-                            )}
-
-                        </div>
-                    </div>
-
-                </div>
             </div >
         )
     }

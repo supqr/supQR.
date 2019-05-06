@@ -24,11 +24,10 @@ public class FeedbackRepository extends AbstractRepository {
 	}
 
 	public List<Feedback> getRatingOfArticle (Integer articleId) {
-		List<Feedback> feedbacks = getContext()
+		return getContext()
 			.select()
 			.from(FEEDBACK)
 			.where(FEEDBACK.ARTICLE_ID.eq(articleId))
 			.fetchInto(Feedback.class);
-		return feedbacks;
 	}
 }

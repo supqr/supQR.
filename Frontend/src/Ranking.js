@@ -10,6 +10,10 @@ export default class Ranking extends Component {
         this.state = {}
     }
 
+    componentWillMount() {
+        //TODO: READ 
+    }
+
     render() {
         return (
             <div>

@@ -65,6 +65,14 @@ input {
   width: 75%;
 }
 
+.EditField p {
+  margin: 2%;
+}
+
+.EditField input {
+  width: 100%;
+}
+
 .Button {
   background-color: #D8E2FF;
   margin-left: 1%;
@@ -75,6 +83,13 @@ input {
   color:#D8E2FF;
   background-color: white;
   border: 1px solid #D8E2FF;
+}
+
+.ButtonSave {
+  background-color: #D8E2FF;
+  margin-top: 3%;
+  color: white;
+  width: 100%;
 }
 
 button {
@@ -155,6 +170,15 @@ button {
   justify-content: center;
   text-align: center;
   width: 100%;
+}
+
+.EditField{
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);;
+  border: 1px solid #707070;
+  background-color: white;
+  padding: 3%;
+  width: 100%;
+  margin-top: 7%;
 }
 
 .RankingEntryPersonal {

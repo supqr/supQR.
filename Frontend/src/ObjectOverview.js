@@ -30,21 +30,8 @@ export default class ObjectOverview extends Component {
 
     handleAddObject = (event) => {
 
-        //TODO: UPLOAD WITH ID
-        if (this.state.objectsRight < this.state.objectsLeft) {
-
-            var objectsRight = this.state.objectsRight
-            objectsRight.push({ id: '999', name: this.state.newObject })
-            this.setState({ objectsRight })
-
-        } else {
-
-            var objectsLeft = this.state.objectsLeft
-            objectsLeft.push({ id: '999', name: this.state.newObject })
-            this.setState({ objectsLeft })
-
-        }
-        //TODO: UNLOAD STATE
+        //TODO: UPLOAD
+        this.readObjects()
         event.preventDefault()
 
     }
@@ -75,7 +62,7 @@ export default class ObjectOverview extends Component {
 
                             {this.state.objects.map((item) =>
 
-                                <Object item={item} />
+                                <Object item={item} history={this.props.history} />
 
                             )}
 

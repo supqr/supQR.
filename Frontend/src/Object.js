@@ -3,9 +3,14 @@ import './App.css';
 
 export default class Object extends Component {
 
-    editObject = () => {
-        console.log("TODO: DETAILANSICHT" + this.props.item.objectId)
+    constructor() {
+        super()
+        this.state = {}
+    }
 
+    editObject = () => {
+        //"TODO: DETAILANSICHT" + this.props.item.objectId
+        this.props.history.push('/objectdetailedit')
     }
 
     deleteObject = () => {

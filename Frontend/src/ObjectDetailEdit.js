@@ -9,7 +9,8 @@ export default class ObjectDetailEdit extends Component {
     constructor() {
         super()
         this.state = {
-            object: []
+            object: [],
+            compare: []
         }
     }
 
@@ -25,6 +26,10 @@ export default class ObjectDetailEdit extends Component {
         fetch("http://localhost:80/api/object/2")
             .then(response => response.json())
             .then(object => this.setState({ object }))
+
+        fetch("http://localhost:80/api/object/2")
+            .then(response => response.json())
+            .then(compare => this.setState({ compare }))
 
     }
 
@@ -61,16 +66,20 @@ export default class ObjectDetailEdit extends Component {
                 <div>
 
                     <Header />
+                    {JSON.stringify(this.state.object) !== JSON.stringify(this.state.compare) &&
+                        <div style={{ backgroundColor: '#FFC6C8' }}>
+                            <a href={this.handleSave}>You have unsaved changes. Klick here to save</a>
+                        </div>
+                    }
 
                     <Container>
                         <Row>
                             <Col></Col>
                             <Col className='Content'>
 
-                                <form onSubmit={this.handleSave} className='AddObject'>
+                                <form className='AddObject'>
                                     <p className='Title'>TITLE</p>
                                     <input type='text' value={this.state.object.title} onChange={this.handleChangeTitle} className='Input' />
-                                    <input type='submit' value='SAVE' className='Button' />
                                 </form>
 
                                 {this.state.object.content.map((item) =>

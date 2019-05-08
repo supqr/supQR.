@@ -16,7 +16,11 @@ export default class Object extends Component {
     }
 
     deleteObject = () => {
-        console.log("TODO: DELETE" + this.props.item.objectId)
+        /*
+        fetch('http://localhost:80/api/object/'+this.props.item.objectId, {
+            method: 'DELETE'
+        })
+        */
     }
 
     render() {

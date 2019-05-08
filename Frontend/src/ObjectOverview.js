@@ -69,7 +69,7 @@ export default class ObjectOverview extends Component {
     render() {
 
 
-        if (this.state.objects.title !== undefined) {
+        if (this.state.objects !== undefined) {
             return (
                 <div>
 

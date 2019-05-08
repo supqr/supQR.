@@ -84,6 +84,53 @@
   width: 50%;
 }
 
+.Login {  
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  border: 1px solid #707070;
+  background-color: white;
+  padding: 7%;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+}
+
+.LoginTitle {
+  color: #BBBBBB;
+  margin: 0;
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.LoginLink a{
+  color: #B8CAFF;
+  margin: 0;
+  text-align: center;
+}
+
+.LoginLink {
+  margin: 0;
+}
+
+.LoginInput{
+  background-color: #F1F1F1;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  padding: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: none;
+  width: 100%;
+}
+
+.LoginButton {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  background-color: #D8E2FF;
+  border: none;
+  padding: 1%;
+  margin-top: 3%;
+  color: white;
+  width: 100%;
+}
+
 /*
         SO NO MEDIUM
 */ 

@@ -22,8 +22,8 @@ export default class ObjectDetailEdit extends Component {
 
     readObject = async () => {
 
-        //TODO: ID VON ROUTER
-        fetch("http://localhost:80/api/object/2")
+        var url = this.props.history.location.pathname.split("/")
+        fetch("http://localhost:80/api/object/" + url[2])
             .then(response => response.json())
             .then(object => this.setState({ object }))
 

@@ -39,6 +39,7 @@ public class ObjectResource {
 
 	@GET
 	@Path("media/{mediaId}")
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public ByteArrayInputStream getMedia (@PathParam("mediaId") Integer mediaId) {
 		return objectService.getMedia(mediaId);
 	}

@@ -99,7 +99,7 @@ public class ObjectService {
 	}
 
 	public void deleteObject (Integer objectId, User user) {
-		if (objectRepository.isUserAuthorOfArticle(objectId, user.getUserId()) && user.getUserType() != UserType.ADMIN) {
+		if (!objectRepository.isUserAuthorOfArticle(objectId, user.getUserId()) && user.getUserType() != UserType.ADMIN) {
 			throw new ServerErrorException(Status.UNAUTHORIZED);
 		}
 		objectRepository.deleteObject(objectId);

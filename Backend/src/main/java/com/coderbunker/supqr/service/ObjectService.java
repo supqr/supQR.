@@ -1,20 +1,19 @@
 package com.coderbunker.supqr.service;
 
-import static java.util.stream.Collectors.toList;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.jooq.generated.tables.pojos.Feedback;
-
 import com.coderbunker.supqr.annotation.Injectable;
 import com.coderbunker.supqr.database.FeedbackRepository;
 import com.coderbunker.supqr.database.ObjectRepository;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
+import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.rest.model.RatingTO;
-
 import lombok.RequiredArgsConstructor;
+import org.jooq.generated.tables.pojos.Feedback;
+
+import javax.inject.Inject;
+import java.io.ByteArrayInputStream;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Injectable
@@ -59,5 +58,14 @@ public class ObjectService {
 			.upvotes(upvotes)
 			.views(views)
 			.build();
+	}
+
+	public ObjectTO getObject (Integer objectId) {
+		return objectRepository.getArticle(objectId);
+	}
+
+	public ByteArrayInputStream getMedia (Integer mediaId) {
+		byte[] media = objectRepository.getMedia(mediaId);
+		return new ByteArrayInputStream(media);
 	}
 }

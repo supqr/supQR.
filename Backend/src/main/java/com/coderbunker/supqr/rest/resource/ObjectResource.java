@@ -14,11 +14,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.coderbunker.supqr.annotation.Registered;
+import com.coderbunker.supqr.auth.User;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
 import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.service.ObjectService;
 
 import lombok.RequiredArgsConstructor;
+
+import io.dropwizard.auth.Auth;
 
 @Registered
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
@@ -51,8 +54,7 @@ public class ObjectResource {
 
 	@DELETE
 	@Path("{objectId}")
-	public Response deleteObject (
-		//@Auth User user,
+	public Response deleteObject (@Auth User user,
 		@PathParam("objectId") Integer objectId) {
 		objectService.deleteObject(objectId);
 

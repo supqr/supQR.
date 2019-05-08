@@ -8,6 +8,7 @@ import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.rest.model.RatingTO;
 import lombok.RequiredArgsConstructor;
 import org.jooq.generated.tables.pojos.Feedback;
+import org.jooq.generated.tables.records.ArticleRecord;
 
 import javax.inject.Inject;
 import java.io.ByteArrayInputStream;
@@ -67,5 +68,15 @@ public class ObjectService {
 	public ByteArrayInputStream getMedia (Integer mediaId) {
 		byte[] media = objectRepository.getMedia(mediaId);
 		return new ByteArrayInputStream(media);
+	}
+
+	public ObjectSummaryTO createObject(Integer userId, String title) {
+		int articleId = objectRepository.createObject(userId, title);
+
+		return ObjectSummaryTO
+			.builder()
+			.title(title)
+			.objectId(articleId)
+			.build();
 	}
 }

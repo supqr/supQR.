@@ -13,7 +13,6 @@ import org.jooq.generated.tables.pojos.Article;
 
 import javax.inject.Inject;
 import javax.ws.rs.InternalServerErrorException;
-import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.IMAGE;
@@ -85,6 +84,6 @@ public class ObjectRepository extends AbstractRepository {
 			.select(MEDIA_CONTENT.MEDIA)
 			.from(MEDIA_CONTENT)
 			.where(MEDIA_CONTENT.MEDIA_CONTENT_ID.eq(mediaId))
-			.fetchOneInto(byte[].class);
+			.fetchOne(record -> record.get(MEDIA_CONTENT.MEDIA));
 	}
 }

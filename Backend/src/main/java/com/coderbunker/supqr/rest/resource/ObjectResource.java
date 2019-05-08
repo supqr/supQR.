@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import com.coderbunker.supqr.annotation.Registered;
 import com.coderbunker.supqr.auth.User;
+import com.coderbunker.supqr.rest.model.CreateObjectTO;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
 import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.service.ObjectService;
@@ -63,8 +64,8 @@ public class ObjectResource {
 	}
 
 	@POST
-	@Path("add/{title}")
-	public ObjectSummaryTO createObject(@Auth User user, @PathParam("title") String title) {
-		return objectService.createObject(user.getUserId(), title);
+	@Path("/")
+	public ObjectSummaryTO createObject(@Auth User user, CreateObjectTO createObjectTO) {
+		return objectService.createObject(user.getUserId(), createObjectTO);
 	}
 }

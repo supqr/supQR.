@@ -10,11 +10,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ObjectSummaryTO {
-	private int objectId;
+@Builder
+public class CreateObjectTO {
+
 	private String title;
-	private RatingTO ratingTO;
 }

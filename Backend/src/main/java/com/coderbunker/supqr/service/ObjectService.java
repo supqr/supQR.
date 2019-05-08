@@ -12,19 +12,12 @@ import org.jooq.generated.tables.pojos.Feedback;
 import com.coderbunker.supqr.annotation.Injectable;
 import com.coderbunker.supqr.database.FeedbackRepository;
 import com.coderbunker.supqr.database.ObjectRepository;
+import com.coderbunker.supqr.rest.model.CreateObjectTO;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
 import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.rest.model.RatingTO;
 
 import lombok.RequiredArgsConstructor;
-import org.jooq.generated.tables.pojos.Feedback;
-import org.jooq.generated.tables.records.ArticleRecord;
-
-import javax.inject.Inject;
-import java.io.ByteArrayInputStream;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Injectable
@@ -80,13 +73,24 @@ public class ObjectService {
 		return new ByteArrayInputStream(media);
 	}
 
-	public ObjectSummaryTO createObject(Integer userId, String title) {
-		int articleId = objectRepository.createObject(userId, title);
+	public ObjectSummaryTO createObject (Integer userId, CreateObjectTO createObjectTO) {
+		int articleId = objectRepository.createObject(userId, createObjectTO.getTitle());
 
 		return ObjectSummaryTO
 			.builder()
-			.title(title)
+			.title(createObjectTO.getTitle())
 			.objectId(articleId)
+			.ratingTO(getEmptyRating())
+			.build();
+	}
+
+	private RatingTO getEmptyRating () {
+		return RatingTO
+			.builder()
+			.downvotes(0)
+			.pendingFeedback(false)
+			.upvotes(0)
+			.upvotes(0)
 			.build();
 	}
 

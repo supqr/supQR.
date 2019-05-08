@@ -4,19 +4,6 @@
 
 package com.coderbunker.supqr.database;
 
-import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
-import com.coderbunker.supqr.annotation.Injectable;
-import com.coderbunker.supqr.rest.model.ContentTO;
-import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
-import com.coderbunker.supqr.rest.model.ObjectTO;
-import org.jooq.Record;
-import org.jooq.generated.tables.pojos.Article;
-import org.jooq.generated.tables.records.ArticleRecord;
-
-import javax.inject.Inject;
-import javax.ws.rs.InternalServerErrorException;
-import java.util.List;
-
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.IMAGE;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.TEXT;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.VIDEO;
@@ -33,6 +20,7 @@ import javax.ws.rs.InternalServerErrorException;
 
 import org.jooq.Record;
 import org.jooq.generated.tables.pojos.Article;
+import org.jooq.generated.tables.records.ArticleRecord;
 
 import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
 import com.coderbunker.supqr.annotation.Injectable;
@@ -109,7 +97,17 @@ public class ObjectRepository extends AbstractRepository {
 			.execute();
 	}
 
-	public int createObject(Integer userId, String title) {
+	public boolean isUserAuthorOfArticle (Integer objectId, Integer userId) {
+		return getContext()
+			.selectOne()
+			.from(ARTICLE)
+			.where(ARTICLE.ARTICLE_ID.eq(objectId))
+			.and(ARTICLE.AUTHOR_ID.eq(userId))
+			.fetch()
+			.isNotEmpty();
+	}
+
+	public int createObject (Integer userId, String title) {
 		ArticleRecord articleRecord = getContext().newRecord(ARTICLE);
 
 		articleRecord.setAuthorId(userId);

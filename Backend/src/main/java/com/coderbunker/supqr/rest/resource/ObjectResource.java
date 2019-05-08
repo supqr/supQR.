@@ -25,6 +25,8 @@ import lombok.RequiredArgsConstructor;
 
 import io.dropwizard.auth.Auth;
 
+import io.dropwizard.auth.Auth;
+
 @Registered
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Path("/object")
@@ -36,10 +38,8 @@ public class ObjectResource {
 
 	@GET
 	@Path("me")
-	public List<ObjectSummaryTO> getMyObjects () {
-		int id = 2; // temporary
-
-		return objectService.getObjectsForUser(id);
+	public List<ObjectSummaryTO> getMyObjects (@Auth User user) {
+		return objectService.getObjectsForUser(user.getUserId());
 	}
 
 	@GET

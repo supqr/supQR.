@@ -4,18 +4,6 @@
 
 package com.coderbunker.supqr.database;
 
-import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
-import com.coderbunker.supqr.annotation.Injectable;
-import com.coderbunker.supqr.rest.model.ContentTO;
-import com.coderbunker.supqr.rest.model.ObjectTO;
-import org.jooq.Record;
-import org.jooq.generated.tables.pojos.Article;
-
-import javax.inject.Inject;
-import javax.ws.rs.InternalServerErrorException;
-import java.io.ByteArrayInputStream;
-import java.util.List;
-
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.IMAGE;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.TEXT;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.VIDEO;
@@ -24,6 +12,19 @@ import static org.jooq.generated.tables.Content.CONTENT;
 import static org.jooq.generated.tables.MediaContent.MEDIA_CONTENT;
 import static org.jooq.generated.tables.TextContent.TEXT_CONTENT;
 import static org.jooq.generated.tables.User.USER;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.ws.rs.InternalServerErrorException;
+
+import org.jooq.Record;
+import org.jooq.generated.tables.pojos.Article;
+
+import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
+import com.coderbunker.supqr.annotation.Injectable;
+import com.coderbunker.supqr.rest.model.ContentTO;
+import com.coderbunker.supqr.rest.model.ObjectTO;
 
 @Injectable
 public class ObjectRepository extends AbstractRepository {
@@ -86,5 +87,12 @@ public class ObjectRepository extends AbstractRepository {
 			.from(MEDIA_CONTENT)
 			.where(MEDIA_CONTENT.MEDIA_CONTENT_ID.eq(mediaId))
 			.fetchOneInto(byte[].class);
+	}
+
+	public void deleteObject (Integer objectId) {
+		getContext()
+			.delete(ARTICLE)
+			.where(ARTICLE.ARTICLE_ID.eq(objectId))
+			.execute();
 	}
 }

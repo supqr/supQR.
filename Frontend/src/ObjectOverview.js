@@ -10,7 +10,8 @@ export default class ObjectOverview extends Component {
         super()
         this.state = {
             objects: [],
-            newObject: "",
+            returned: {},
+            newObject: ""
         }
     }
 
@@ -31,7 +32,20 @@ export default class ObjectOverview extends Component {
     handleAddObject = (event) => {
 
         //TODO: UPLOAD
-        this.readObjects()
+        fetch('http://localhost:80/api/object/add', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.newObject),
+        }).then(response => response.json())
+            .then(returned => this.setState({ returned }))
+
+        if (this.state.returned.title !== undefined) {
+            this.state.objects.push(this.state.returned)
+        }
+        //TODO: UPLOAD
         event.preventDefault()
 
     }

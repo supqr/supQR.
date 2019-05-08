@@ -12,20 +12,25 @@ export default class Object extends Component {
 
     editObject = () => {
         //"TODO: DETAILANSICHT" + this.props.item.objectId
-        this.props.history.push('/objectdetailedit')
+        this.props.history.push('/objectdetailedit/' + this.props.item.objectId)
     }
 
     deleteObject = () => {
-        console.log("TODO: DELETE" + this.props.item.objectId)
+        /*
+        fetch('http://localhost:80/api/object/'+this.props.item.objectId, {
+            method: 'DELETE'
+        })
+        */
+    }
+
+    navigate = () => {
+        this.props.history.push('/objectdetailview/' + this.props.item.objectId)
     }
 
     render() {
         return (
             <div className='Object'>
-                <QRCode value='todo' className='Icon' />
-                {/*
-                <img src={require('./assets/icon.png')} alt='objectIcon.' className='Icon' />
-                */}
+                <QRCode onClick={this.navigate} value={'http://localhost:3000/objectdetailview/' + this.props.item.objectId} className='Icon' />
                 <p className='objectName'>{this.props.item.title}</p>
                 <button onClick={this.editObject} className='buttonEdit'>EDIT</button>
                 <button onClick={this.deleteObject} className='buttonDelete'>DELETE</button>

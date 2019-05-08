@@ -287,3 +287,33 @@ a {
 .add {
   width: 100%;
 }
+
+.objectView {
+  color: #707070;
+  font-size: 15px;
+}
+
+.contentButton{
+  background-color: #D8E2FF !important;
+  color: #707070 !important;
+  border: none !important;
+  width: 100% !important;
+  outline: none !important;
+}
+
+.contentButton:focus {outline:0;}
+
+.contentHead{
+  font-size: 20px;
+}
+
+.contentText{
+  font-size: 15px;
+  margin-top: 2%;
+}
+
+.autor{
+  
+  color: #BBBBBB;
+
+}

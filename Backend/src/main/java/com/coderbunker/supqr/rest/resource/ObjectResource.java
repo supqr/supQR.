@@ -1,21 +1,29 @@
 package com.coderbunker.supqr.rest.resource;
 
-import com.coderbunker.supqr.annotation.Registered;
-import com.coderbunker.supqr.auth.User;
-import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
-import com.coderbunker.supqr.rest.model.ObjectTO;
-import com.coderbunker.supqr.service.ObjectService;
-import lombok.RequiredArgsConstructor;
+import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.io.ByteArrayInputStream;
-import java.util.List;
+import javax.ws.rs.core.Response;
+
+import com.coderbunker.supqr.annotation.Registered;
+import com.coderbunker.supqr.auth.User;
+import com.coderbunker.supqr.rest.model.CreateObjectTO;
+import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
+import com.coderbunker.supqr.rest.model.ObjectTO;
+import com.coderbunker.supqr.service.ObjectService;
+
+import lombok.RequiredArgsConstructor;
+
+import io.dropwizard.auth.Auth;
 
 import io.dropwizard.auth.Auth;
 
@@ -42,7 +50,23 @@ public class ObjectResource {
 
 	@GET
 	@Path("media/{mediaId}")
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public ByteArrayInputStream getMedia (@PathParam("mediaId") Integer mediaId) {
 		return objectService.getMedia(mediaId);
+	}
+
+	@DELETE
+	@Path("{objectId}")
+	public Response deleteObject (@Auth User user,
+		@PathParam("objectId") Integer objectId) {
+		objectService.deleteObject(objectId);
+
+		return Response.accepted().build();
+	}
+
+	@POST
+	@Path("/")
+	public ObjectSummaryTO createObject(@Auth User user, CreateObjectTO createObjectTO) {
+		return objectService.createObject(user.getUserId(), createObjectTO);
 	}
 }

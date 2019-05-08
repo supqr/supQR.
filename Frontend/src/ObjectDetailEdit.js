@@ -9,7 +9,8 @@ export default class ObjectDetailEdit extends Component {
     constructor() {
         super()
         this.state = {
-            object: []
+            object: [],
+            compare: []
         }
     }
 
@@ -21,10 +22,14 @@ export default class ObjectDetailEdit extends Component {
 
     readObject = async () => {
 
-        //TODO: ID VON ROUTER
-        fetch("http://localhost:80/api/object/2")
+        var url = this.props.history.location.pathname.split("/")
+        fetch("http://localhost:80/api/object/" + url[2])
             .then(response => response.json())
             .then(object => this.setState({ object }))
+
+        fetch("http://localhost:80/api/object/" + url[2])
+            .then(response => response.json())
+            .then(compare => this.setState({ compare }))
 
     }
 
@@ -55,22 +60,26 @@ export default class ObjectDetailEdit extends Component {
 
     render() {
 
-        if (this.state.object.content !== undefined) {
+        if (this.state.object.content !== undefined && this.state.compare.content !== undefined) {
 
             return (
                 <div>
 
                     <Header />
+                    {JSON.stringify(this.state.object) !== JSON.stringify(this.state.compare) &&
+                        <div style={{ backgroundColor: '#FFC6C8' }}>
+                            <a href={this.handleSave}>You have unsaved changes. Klick here to save</a>
+                        </div>
+                    }
 
                     <Container>
                         <Row>
                             <Col></Col>
                             <Col className='Content'>
 
-                                <form onSubmit={this.handleSave} className='AddObject'>
+                                <form className='AddObject'>
                                     <p className='Title'>TITLE</p>
                                     <input type='text' value={this.state.object.title} onChange={this.handleChangeTitle} className='Input' />
-                                    <input type='submit' value='SAVE' className='Button' />
                                 </form>
 
                                 {this.state.object.content.map((item) =>

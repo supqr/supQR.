@@ -58,7 +58,7 @@ export default class ContentEdit extends Component {
 
             return (
                 <div>
-                    <input type='text' value={this.state.object.value} onChange={this.handleChangeValue} />
+                    <textarea value={this.state.object.value} onChange={this.handleChangeValue} style={{ width: '100%' }} />
                     <hr />
                 </div>
             )

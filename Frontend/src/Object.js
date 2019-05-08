@@ -11,7 +11,6 @@ export default class Object extends Component {
     }
 
     editObject = () => {
-        //"TODO: DETAILANSICHT" + this.props.item.objectId
         this.props.history.push('/objectdetailedit/' + this.props.item.objectId)
     }
 

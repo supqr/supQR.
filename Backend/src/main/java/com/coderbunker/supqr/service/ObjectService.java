@@ -1,11 +1,21 @@
 package com.coderbunker.supqr.service;
 
+import static java.util.stream.Collectors.toList;
+
+import java.io.ByteArrayInputStream;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.jooq.generated.tables.pojos.Feedback;
+
 import com.coderbunker.supqr.annotation.Injectable;
 import com.coderbunker.supqr.database.FeedbackRepository;
 import com.coderbunker.supqr.database.ObjectRepository;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
 import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.rest.model.RatingTO;
+
 import lombok.RequiredArgsConstructor;
 import org.jooq.generated.tables.pojos.Feedback;
 import org.jooq.generated.tables.records.ArticleRecord;
@@ -78,5 +88,11 @@ public class ObjectService {
 			.title(title)
 			.objectId(articleId)
 			.build();
+	}
+
+	public void deleteObject (Integer objectId) {
+		// TODO: Check if user is allowed to delete
+
+		objectRepository.deleteObject(objectId);
 	}
 }

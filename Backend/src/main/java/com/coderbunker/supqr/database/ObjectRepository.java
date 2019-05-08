@@ -26,6 +26,19 @@ import static org.jooq.generated.tables.MediaContent.MEDIA_CONTENT;
 import static org.jooq.generated.tables.TextContent.TEXT_CONTENT;
 import static org.jooq.generated.tables.User.USER;
 
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.ws.rs.InternalServerErrorException;
+
+import org.jooq.Record;
+import org.jooq.generated.tables.pojos.Article;
+
+import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
+import com.coderbunker.supqr.annotation.Injectable;
+import com.coderbunker.supqr.rest.model.ContentTO;
+import com.coderbunker.supqr.rest.model.ObjectTO;
+
 @Injectable
 public class ObjectRepository extends AbstractRepository {
 
@@ -56,9 +69,9 @@ public class ObjectRepository extends AbstractRepository {
 			.fetch(this::toContentTO);
 		return ObjectTO
 			.builder()
-            .author(articleRecord.get(USER.USERNAME))
 			.objectId(articleId)
 			.title(articleRecord.get(ARTICLE.TITLE))
+			.author(articleRecord.get(USER.USERNAME))
 			.content(content)
 			.build();
 	}
@@ -87,6 +100,13 @@ public class ObjectRepository extends AbstractRepository {
 			.from(MEDIA_CONTENT)
 			.where(MEDIA_CONTENT.MEDIA_CONTENT_ID.eq(mediaId))
 			.fetchOne(record -> record.get(MEDIA_CONTENT.MEDIA));
+	}
+
+	public void deleteObject (Integer objectId) {
+		getContext()
+			.delete(ARTICLE)
+			.where(ARTICLE.ARTICLE_ID.eq(objectId))
+			.execute();
 	}
 
 	public int createObject(Integer userId, String title) {

@@ -112,6 +112,7 @@ public class ObjectRepository extends AbstractRepository {
 
 		articleRecord.setAuthorId(userId);
 		articleRecord.setTitle(title);
+		articleRecord.setViews(0);
 
 		articleRecord.store();
 

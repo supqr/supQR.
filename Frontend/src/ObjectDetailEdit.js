@@ -27,7 +27,7 @@ export default class ObjectDetailEdit extends Component {
             .then(response => response.json())
             .then(object => this.setState({ object }))
 
-        fetch("http://localhost:80/api/object/2")
+        fetch("http://localhost:80/api/object/" + url[2])
             .then(response => response.json())
             .then(compare => this.setState({ compare }))
 

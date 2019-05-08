@@ -4,6 +4,19 @@
 
 package com.coderbunker.supqr.database;
 
+import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
+import com.coderbunker.supqr.annotation.Injectable;
+import com.coderbunker.supqr.rest.model.ContentTO;
+import com.coderbunker.supqr.rest.model.ObjectTO;
+import org.jooq.Record;
+import org.jooq.generated.tables.pojos.Article;
+import org.jooq.generated.tables.records.ArticleRecord;
+import org.jooq.generated.tables.records.ContentRecord;
+
+import javax.inject.Inject;
+import javax.ws.rs.InternalServerErrorException;
+import java.util.List;
+
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.IMAGE;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.TEXT;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.VIDEO;
@@ -12,20 +25,6 @@ import static org.jooq.generated.tables.Content.CONTENT;
 import static org.jooq.generated.tables.MediaContent.MEDIA_CONTENT;
 import static org.jooq.generated.tables.TextContent.TEXT_CONTENT;
 import static org.jooq.generated.tables.User.USER;
-
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.ws.rs.InternalServerErrorException;
-
-import org.jooq.Record;
-import org.jooq.generated.tables.pojos.Article;
-import org.jooq.generated.tables.records.ArticleRecord;
-
-import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
-import com.coderbunker.supqr.annotation.Injectable;
-import com.coderbunker.supqr.rest.model.ContentTO;
-import com.coderbunker.supqr.rest.model.ObjectTO;
 
 @Injectable
 public class ObjectRepository extends AbstractRepository {
@@ -54,6 +53,7 @@ public class ObjectRepository extends AbstractRepository {
 			.from(CONTENT)
 			.leftJoin(TEXT_CONTENT).on(TEXT_CONTENT.CONTENT_ID.eq(CONTENT.CONTENT_ID))
 			.leftJoin(MEDIA_CONTENT).on(MEDIA_CONTENT.CONTENT_ID.eq(CONTENT.CONTENT_ID))
+			.orderBy(CONTENT.ORDER_ID.asc())
 			.fetch(this::toContentTO);
 		return ObjectTO
 			.builder()
@@ -117,5 +117,46 @@ public class ObjectRepository extends AbstractRepository {
 		articleRecord.store();
 
 		return articleRecord.getArticleId();
+	}
+
+	public void deleteContent (Integer articleId) {
+		getContext()
+			.deleteFrom(CONTENT)
+			.where(CONTENT.ARTICLE_ID.eq(articleId));
+	}
+
+	public int createContent (Integer articleId, Integer orderId, boolean isMedia) {
+		ContentRecord contentRecord = getContext()
+			.newRecord(CONTENT)
+			.setArticleId(articleId)
+			.setOrderId(orderId)
+			.setMedia(isMedia);
+		contentRecord.insert();
+		return contentRecord.getContentId();
+	}
+
+	public void insertTextContent (Integer contentId, String value) {
+		getContext()
+			.newRecord(TEXT_CONTENT)
+			.setContentId(contentId)
+			.setTextValue(value)
+			.insert();
+	}
+
+	public void insertMediaContent (Integer contentId, byte[] value, boolean video) {
+		getContext()
+			.newRecord(MEDIA_CONTENT)
+			.setContentId(contentId)
+			.setMedia(value)
+			.setVideo(video)
+			.insert();
+	}
+
+	public void updateTitle (Integer objectId, String title) {
+		getContext()
+			.update(ARTICLE)
+			.set(ARTICLE.TITLE, title)
+			.where(ARTICLE.ARTICLE_ID.eq(objectId))
+			.execute();
 	}
 }

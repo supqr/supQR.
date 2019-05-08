@@ -1,27 +1,27 @@
 package com.coderbunker.supqr.service;
 
-import static java.util.stream.Collectors.toList;
-
-import java.io.ByteArrayInputStream;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.ws.rs.ServerErrorException;
-import javax.ws.rs.core.Response.Status;
-
-import org.jooq.generated.tables.pojos.Feedback;
-
 import com.coderbunker.supqr.annotation.Injectable;
 import com.coderbunker.supqr.auth.User;
 import com.coderbunker.supqr.auth.User.UserType;
 import com.coderbunker.supqr.database.FeedbackRepository;
 import com.coderbunker.supqr.database.ObjectRepository;
+import com.coderbunker.supqr.rest.model.ContentUploadTO;
+import com.coderbunker.supqr.rest.model.ContentUploadTO.Type;
 import com.coderbunker.supqr.rest.model.CreateObjectTO;
+import com.coderbunker.supqr.rest.model.ObjectEditTO;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
 import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.rest.model.RatingTO;
-
 import lombok.RequiredArgsConstructor;
+import org.jooq.generated.tables.pojos.Feedback;
+
+import javax.inject.Inject;
+import javax.ws.rs.ServerErrorException;
+import javax.ws.rs.core.Response.Status;
+import java.io.ByteArrayInputStream;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Injectable
@@ -103,5 +103,26 @@ public class ObjectService {
 			throw new ServerErrorException(Status.UNAUTHORIZED);
 		}
 		objectRepository.deleteObject(objectId);
+	}
+
+	public void editObject (Integer objectId, User user, ObjectEditTO objectEditTO) {
+		if (!objectRepository.isUserAuthorOfArticle(objectId, user.getUserId()) && user.getUserType() != UserType.ADMIN) {
+			throw new ServerErrorException(Status.UNAUTHORIZED);
+		}
+		objectRepository.deleteContent(objectId);
+		objectRepository.updateTitle(objectId, objectEditTO.getTitle());
+		for (int i = 0; i < objectEditTO.getContent().size(); i++) {
+			insertContent(objectId, i, objectEditTO.getContent().get(i));
+		}
+	}
+
+	private void insertContent (Integer articleId, Integer orderId, ContentUploadTO contentUploadTO) {
+		if (contentUploadTO.getType() == Type.TEXT) {
+			Integer contentId = objectRepository.createContent(articleId, orderId, false);
+			objectRepository.insertTextContent(contentId, contentUploadTO.getText());
+		} else {
+			Integer contentId = objectRepository.createContent(articleId, orderId, true);
+			objectRepository.insertMediaContent(contentId, contentUploadTO.getData(), contentUploadTO.getType() == Type.VIDEO);
+		}
 	}
 }

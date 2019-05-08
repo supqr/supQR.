@@ -7,9 +7,11 @@ package com.coderbunker.supqr.database;
 import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
 import com.coderbunker.supqr.annotation.Injectable;
 import com.coderbunker.supqr.rest.model.ContentTO;
+import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
 import com.coderbunker.supqr.rest.model.ObjectTO;
 import org.jooq.Record;
 import org.jooq.generated.tables.pojos.Article;
+import org.jooq.generated.tables.records.ArticleRecord;
 
 import javax.inject.Inject;
 import javax.ws.rs.InternalServerErrorException;
@@ -57,7 +59,6 @@ public class ObjectRepository extends AbstractRepository {
 			.builder()
 			.objectId(articleId)
 			.title(articleRecord.get(ARTICLE.TITLE))
-			.author(articleRecord.get(USER.USERNAME))
 			.content(content)
 			.build();
 	}
@@ -86,5 +87,15 @@ public class ObjectRepository extends AbstractRepository {
 			.from(MEDIA_CONTENT)
 			.where(MEDIA_CONTENT.MEDIA_CONTENT_ID.eq(mediaId))
 			.fetchOneInto(byte[].class);
+	}
+
+	public int createObject(int userId, String title) {
+		ArticleRecord articleRecord = getContext()
+			.insertInto(ARTICLE, ARTICLE.AUTHOR_ID, ARTICLE.TITLE)
+			.values(userId, title)
+			.returning(ARTICLE.ARTICLE_ID)
+			.fetchOne();
+
+		return articleRecord.getArticleId();
 	}
 }

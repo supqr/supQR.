@@ -73,13 +73,24 @@ public class ObjectService {
 		return new ByteArrayInputStream(media);
 	}
 
-	public ObjectSummaryTO createObject(Integer userId, CreateObjectTO createObjectTO) {
+	public ObjectSummaryTO createObject (Integer userId, CreateObjectTO createObjectTO) {
 		int articleId = objectRepository.createObject(userId, createObjectTO.getTitle());
 
 		return ObjectSummaryTO
 			.builder()
 			.title(createObjectTO.getTitle())
 			.objectId(articleId)
+			.ratingTO(getEmptyRating())
+			.build();
+	}
+
+	private RatingTO getEmptyRating () {
+		return RatingTO
+			.builder()
+			.downvotes(0)
+			.pendingFeedback(false)
+			.upvotes(0)
+			.upvotes(0)
 			.build();
 	}
 

@@ -57,6 +57,7 @@ public class ObjectRepository extends AbstractRepository {
 			.fetch(this::toContentTO);
 		return ObjectTO
 			.builder()
+            .author(articleRecord.get(USER.USERNAME))
 			.objectId(articleId)
 			.title(articleRecord.get(ARTICLE.TITLE))
 			.content(content)

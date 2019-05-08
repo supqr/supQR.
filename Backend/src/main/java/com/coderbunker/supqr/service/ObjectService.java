@@ -73,7 +73,8 @@ public class ObjectService {
 	public ObjectSummaryTO createObject(Integer userId, String title) {
 		int articleId = objectRepository.createObject(userId, title);
 
-		return ObjectSummaryTO.builder()
+		return ObjectSummaryTO
+			.builder()
 			.title(title)
 			.objectId(articleId)
 			.build();

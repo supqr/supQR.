@@ -16,6 +16,5 @@ import lombok.NoArgsConstructor;
 public class ObjectSummaryTO {
 	private int objectId;
 	private String title;
-	private String pictureURL;
 	private RatingTO ratingTO;
 }

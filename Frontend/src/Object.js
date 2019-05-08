@@ -12,7 +12,7 @@ export default class Object extends Component {
 
     editObject = () => {
         //"TODO: DETAILANSICHT" + this.props.item.objectId
-        this.props.history.push('/objectdetailedit')
+        this.props.history.push('/objectdetailedit/' + this.props.item.objectId)
     }
 
     deleteObject = () => {
@@ -26,10 +26,7 @@ export default class Object extends Component {
     render() {
         return (
             <div className='Object'>
-                <QRCode value='todo' className='Icon' />
-                {/*
-                <img src={require('./assets/icon.png')} alt='objectIcon.' className='Icon' />
-                */}
+                <QRCode value={'http://localhost:3000/objectdetailview/' + this.props.item.objectId} className='Icon' />
                 <p className='objectName'>{this.props.item.title}</p>
                 <button onClick={this.editObject} className='buttonEdit'>EDIT</button>
                 <button onClick={this.deleteObject} className='buttonDelete'>DELETE</button>

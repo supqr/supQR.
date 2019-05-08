@@ -1,11 +1,22 @@
 import React from 'react';
-import Object from './ObjectDetailEdit';
+import Login from './Login';
+import Register from './Register';
+import ObjectOverview from './ObjectOverview';
+import ObjectDetailEdit from './ObjectDetailEdit';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ObjectDetailView from './ObjectDetailView';
 
 function App() {
 
   //OPEN STARTPAGE
   return (
-    <Object />
+    <Router>
+      <Route exact path={'/'} component={Login} />
+      <Route path={'/register'} component={Register} />
+      <Route path={'/objectoverview'} component={ObjectOverview} />
+      <Route path={'/objectdetailedit'} component={ObjectDetailEdit} />
+      <Route path={'/objectdetailview'} component={ObjectDetailView} />
+    </Router>
   );
 
 }

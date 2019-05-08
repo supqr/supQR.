@@ -1,26 +1,7 @@
-html {
-  background-color: #F8F8F8;
-}
+/*
+        NEW CSS
+*/ 
 
-a {
-  text-decoration: none;
-  margin-right: 3%;
-  margin-left: 3%;
-  color: white;
-}
-/*
-a:hover{
-  TODO
-}
-*/
-.navActive {
-  color: #B8CAFF;
-}
-/*
-.navActive:hover{
-  TODO
-}
-*/
 .Header {
   background-color:#D8E2FF;
   
@@ -37,53 +18,134 @@ a:hover{
   width: 7%;
 }
 
-.Body {
-  padding-right: 33%;
-  padding-left: 33%;
-  padding-bottom: 5%;
+.Content {
+  margin-top: 3%;
+  margin-bottom: 7%;
+}
+
+.AddObject {
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 5%;
 }
 
 .Title {
-  margin-top: 7%;
   color: #BBBBBB;
-  text-decoration: underline;
-}
-
-input {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
-
-  padding-bottom: 0.5%; 
-  padding-top: 0.5%;
-  padding-right: 1%;
-  padding-left: 1%;
-
-  border: none;
+  margin: 0;
 }
 
 .Input {
   background-color: #F1F1F1;
-  width: 75%;
-}
-
-.EditField p {
-  margin: 2%;
-}
-
-.EditField input {
-  width: 100%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  border: none;
+  width: 85%;
 }
 
 .Button {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
   background-color: #D8E2FF;
+  border: none;
   margin-left: 1%;
   color: white;
 }
 
-.Button:hover{
-  color:#D8E2FF;
+.Object {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  border: 1px solid #707070;
   background-color: white;
-  border: 1px solid #D8E2FF;
+  padding: 3%;
+  margin: 3%;
+  width: 44%;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
 }
+
+.Icon {
+  margin-top: 5%;
+  margin-bottom: 3%;
+}
+
+.buttonEdit {
+  background-color: #D8E2FF;
+  color: white;
+  border: none;
+  padding-bottom: 3%; 
+  padding-top: 3%;
+  width: 50%;
+}
+
+.buttonDelete {
+  background-color: white;
+  color: #B8CAFF;
+  border: none;
+  padding-bottom: 3%; 
+  padding-top: 3%;
+  width: 50%;
+}
+
+.Login {  
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  border: 1px solid #707070;
+  background-color: white;
+  padding: 7%;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+}
+
+.LoginTitle {
+  color: #BBBBBB;
+  margin: 0;
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.LoginLink a{
+  color: #B8CAFF;
+  margin: 0;
+  text-align: center;
+}
+
+.LoginLink {
+  margin: 0;
+}
+
+.LoginInput{
+  background-color: #F1F1F1;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  padding: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: none;
+  width: 100%;
+}
+
+.LoginButton {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+  background-color: #D8E2FF;
+  border: none;
+  padding: 1%;
+  margin-top: 3%;
+  color: white;
+  width: 100%;
+}
+
+/*
+        SO NO MEDIUM
+*/ 
+
+
+button {
+  padding-bottom: 3%; 
+  padding-top: 3%;
+  width: 50%;
+  border: none;
+}
+
+/*
+        OLD CSS
+*/ 
 
 .ButtonSave {
   background-color: #D8E2FF;
@@ -92,12 +154,29 @@ input {
   width: 100%;
 }
 
-button {
-  padding-bottom: 3%; 
-  padding-top: 3%;
-  width: 50%;
+a {
+  text-decoration: none;
+  margin-right: 3%;
+  margin-left: 3%;
+  color: white;
+}
 
-  border: none;
+.navActive {
+  color: #B8CAFF;
+}
+
+.Body {
+  padding-right: 33%;
+  padding-left: 33%;
+  padding-bottom: 5%;
+}
+
+.EditField p {
+  margin: 2%;
+}
+
+.EditField input {
+  width: 100%;
 }
 
 .buttonMore {
@@ -116,49 +195,10 @@ button {
   border: 1px solid #D8E2FF;
 }
 
-.buttonEdit {
-  background-color: #D8E2FF;
-  color: white;
-}
-
-.buttonEdit:hover{
-  color:#D8E2FF;
-  background-color: white;
-  border: 1px solid #D8E2FF;
-}
-
-.buttonDelete {
-  background-color: white;
-  color: #B8CAFF;
-}
-
-.buttonDelete:hover{
-  color:#D8E2FF;
-  background-color: white;
-  border: 1px solid #D8E2FF;
-}
-
 .objectName {
   color: #BBBBBB;
-  text-decoration: underline;
   margin-top: 0;
   margin-bottom: 10%;
-}
-
-.Icon {
-  margin-top: 5%;
-}
-
-.Object {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);;
-  border: 1px solid #707070;
-  background-color: white;
-  padding: 3%;
-  width: 65%;
-  margin-bottom: 25%;
-  
-  justify-content: center;
-  text-align: center;
 }
 
 .RankingEntry{
@@ -246,4 +286,34 @@ button {
 
 .add {
   width: 100%;
+}
+
+.objectView {
+  color: #707070;
+  font-size: 15px;
+}
+
+.contentButton{
+  background-color: #D8E2FF !important;
+  color: #707070 !important;
+  border: none !important;
+  width: 100% !important;
+  outline: none !important;
+}
+
+.contentButton:focus {outline:0;}
+
+.contentHead{
+  font-size: 20px;
+}
+
+.contentText{
+  font-size: 15px;
+  margin-top: 2%;
+}
+
+.autor{
+  
+  color: #BBBBBB;
+
 }

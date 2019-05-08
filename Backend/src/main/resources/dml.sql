@@ -1,9 +1,9 @@
-INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('hanspeter', 'Hans', 'Peter', 'hanspeter@gmail.com', 'pw', FALSE);
-INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('teowidmer', 'Teo', 'Widmer', 'teo.widmer@gmx.ch', 'pw', FALSE);
-INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('johnwick3000', 'John', 'Wick', 'jw@gmail.com', 'pw', FALSE);
-INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('maxmuster', 'Max', 'Muster', 'maxiboi200@gmx.ch', 'pw', FALSE);
-INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('jsins', 'Johnathan', 'Sins', 'jsins@gmail.com', 'pw', FALSE);
-INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('guenthermint', 'Guenther', 'Mint', 'mint@yahoo.com', 'pw', TRUE);
+INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('hanspeter', 'Hans', 'Peter', 'hanspeter@gmail.com', '$2a$10$1WFQ6Ix./1rzkt4fPZ4kS.0SR6nsh0XZ847PQiFSmo/gXt0AuuZMu', FALSE);
+INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('teowidmer', 'Teo', 'Widmer', 'teo.widmer@gmx.ch', '$2a$10$1WFQ6Ix./1rzkt4fPZ4kS.0SR6nsh0XZ847PQiFSmo/gXt0AuuZMu', FALSE);
+INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('johnwick3000', 'John', 'Wick', 'jw@gmail.com', '$2a$10$1WFQ6Ix./1rzkt4fPZ4kS.0SR6nsh0XZ847PQiFSmo/gXt0AuuZMu', FALSE);
+INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('maxmuster', 'Max', 'Muster', 'maxiboi200@gmx.ch', '$2a$10$1WFQ6Ix./1rzkt4fPZ4kS.0SR6nsh0XZ847PQiFSmo/gXt0AuuZMu', FALSE);
+INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('jsins', 'Johnathan', 'Sins', 'jsins@gmail.com', '$2a$10$1WFQ6Ix./1rzkt4fPZ4kS.0SR6nsh0XZ847PQiFSmo/gXt0AuuZMu', FALSE);
+INSERT INTO user(username, firstName, lastName, email, password, admin) VALUES('guenthermint', 'Guenther', 'Mint', 'mint@yahoo.com', '$2a$10$1WFQ6Ix./1rzkt4fPZ4kS.0SR6nsh0XZ847PQiFSmo/gXt0AuuZMu', TRUE);
 
 INSERT INTO article(title, author_id, views) VALUES('Coffee Machine', 2, 69);
 INSERT INTO article(title, author_id, views) VALUES('Toilet', 6, 23);

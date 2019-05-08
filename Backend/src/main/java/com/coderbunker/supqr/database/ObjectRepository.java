@@ -89,12 +89,13 @@ public class ObjectRepository extends AbstractRepository {
 			.fetchOneInto(byte[].class);
 	}
 
-	public int createObject(int userId, String title) {
-		ArticleRecord articleRecord = getContext()
-			.insertInto(ARTICLE, ARTICLE.AUTHOR_ID, ARTICLE.TITLE)
-			.values(userId, title)
-			.returning(ARTICLE.ARTICLE_ID)
-			.fetchOne();
+	public int createObject(Integer userId, String title) {
+		ArticleRecord articleRecord = getContext().newRecord(ARTICLE);
+
+		articleRecord.setAuthorId(userId);
+		articleRecord.setTitle(title);
+
+		articleRecord.store();
 
 		return articleRecord.getArticleId();
 	}

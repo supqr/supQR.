@@ -60,7 +60,4 @@ public class ObjectResource {
 
 		return Response.accepted().build();
 	}
-
-
-
 }

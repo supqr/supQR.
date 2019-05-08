@@ -4,6 +4,20 @@
 
 package com.coderbunker.supqr.database;
 
+import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
+import com.coderbunker.supqr.annotation.Injectable;
+import com.coderbunker.supqr.rest.model.ContentTO;
+import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
+import com.coderbunker.supqr.rest.model.ObjectTO;
+import org.jooq.Record;
+import org.jooq.generated.tables.pojos.Article;
+import org.jooq.generated.tables.records.ArticleRecord;
+
+import javax.inject.Inject;
+import javax.ws.rs.InternalServerErrorException;
+import java.io.ByteArrayInputStream;
+import java.util.List;
+
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.IMAGE;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.TEXT;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.VIDEO;
@@ -94,5 +108,16 @@ public class ObjectRepository extends AbstractRepository {
 			.delete(ARTICLE)
 			.where(ARTICLE.ARTICLE_ID.eq(objectId))
 			.execute();
+	}
+
+	public int createObject(Integer userId, String title) {
+		ArticleRecord articleRecord = getContext().newRecord(ARTICLE);
+
+		articleRecord.setAuthorId(userId);
+		articleRecord.setTitle(title);
+
+		articleRecord.store();
+
+		return articleRecord.getArticleId();
 	}
 }

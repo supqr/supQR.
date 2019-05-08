@@ -51,7 +51,7 @@ export default class ContentEdit extends Component {
                     <tbody>
                         <tr>
                             <td>
-                                <img src={this.state.object.value} alt='pic.' className='add' />
+                                <img src={"http://localhost:80/api/object/media/" + this.state.object.value} alt='pic.' className='add' />
                             </td>
                         </tr>
                     </tbody>

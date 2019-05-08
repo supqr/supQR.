@@ -22,12 +22,12 @@ export default class ObjectDetailEdit extends Component {
 
     readObject = async () => {
 
-        //TODO: ID VON ROUTER
-        fetch("http://localhost:80/api/object/2")
+        var url = this.props.history.location.pathname.split("/")
+        fetch("http://localhost:80/api/object/" + url[2])
             .then(response => response.json())
             .then(object => this.setState({ object }))
 
-        fetch("http://localhost:80/api/object/2")
+        fetch("http://localhost:80/api/object/" + url[2])
             .then(response => response.json())
             .then(compare => this.setState({ compare }))
 
@@ -60,7 +60,7 @@ export default class ObjectDetailEdit extends Component {
 
     render() {
 
-        if (this.state.object.content !== undefined) {
+        if (this.state.object.content !== undefined && this.state.compare.content !== undefined) {
 
             return (
                 <div>

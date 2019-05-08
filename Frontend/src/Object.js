@@ -16,11 +16,14 @@ export default class Object extends Component {
     }
 
     deleteObject = () => {
-        /*
-        fetch('http://localhost:80/api/object/'+this.props.item.objectId, {
-            method: 'DELETE'
+
+        fetch('http://localhost:80/api/object/' + this.props.item.objectId, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
         })
-        */
+
     }
 
     navigate = () => {

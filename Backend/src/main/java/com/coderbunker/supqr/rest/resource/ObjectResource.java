@@ -12,7 +12,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import com.coderbunker.supqr.annotation.Registered;
 import com.coderbunker.supqr.auth.User;
@@ -57,11 +56,8 @@ public class ObjectResource {
 
 	@DELETE
 	@Path("{objectId}")
-	public Response deleteObject (@Auth User user,
-		@PathParam("objectId") Integer objectId) {
-		objectService.deleteObject(objectId);
-
-		return Response.accepted().build();
+	public void deleteObject (@Auth User user, @PathParam("objectId") Integer objectId) {
+		objectService.deleteObject(objectId, user);
 	}
 
 	@POST

@@ -60,7 +60,7 @@ export default class ObjectDetailEdit extends Component {
 
     render() {
 
-        if (this.state.object.content !== undefined) {
+        if (this.state.object.content !== undefined && this.state.compare.content !== undefined) {
 
             return (
                 <div>

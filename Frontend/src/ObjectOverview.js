@@ -36,7 +36,8 @@ export default class ObjectOverview extends Component {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
             body: JSON.stringify(this.state.newObject),
         }).then(response => response.json())
@@ -76,7 +77,7 @@ export default class ObjectOverview extends Component {
 
                             {this.state.objects.map((item) =>
 
-                                <Object item={item} history={this.props.history} />
+                                <Object item={item} history={this.props.history} reload={this.readObjects} />
 
                             )}
 

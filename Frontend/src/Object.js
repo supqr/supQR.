@@ -23,6 +23,7 @@ export default class Object extends Component {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         })
+        this.props.reload()
 
     }
 

@@ -24,8 +24,6 @@ import lombok.RequiredArgsConstructor;
 
 import io.dropwizard.auth.Auth;
 
-import io.dropwizard.auth.Auth;
-
 @Registered
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Path("/object")

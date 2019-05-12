@@ -9,8 +9,7 @@ export default class ObjectDetailEdit extends Component {
     constructor() {
         super()
         this.state = {
-            object: [],
-            compare: []
+            object: []
         }
     }
 
@@ -27,15 +26,20 @@ export default class ObjectDetailEdit extends Component {
             .then(response => response.json())
             .then(object => this.setState({ object }))
 
-        fetch("http://localhost:80/api/object/" + url[2])
-            .then(response => response.json())
-            .then(compare => this.setState({ compare }))
-
     }
 
     handleSave = (event) => {
 
-        //TODO: AM JOEL SIM WIXSERVICE S GANZE OBJECT UESCHICKE
+        //TODO: RICHTIGE URL
+        fetch('http://localhost:80/api/object', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify(this.state.object),
+        })
         event.preventDefault()
 
     }
@@ -51,18 +55,26 @@ export default class ObjectDetailEdit extends Component {
     addContent = () => {
 
         var entry = {
-            "type": "",
+            "type": "TODO",
             "value": ""
         }
         var object = this.state.object
         object.content.push(entry)
-        this.setState({ entry })
+        this.setState({ object })
+
+    }
+
+    update = (updatedId, updatedObject) => {
+
+        var object = this.state.object
+        object.content[updatedId] = updatedObject
+        this.setState({ object })
 
     }
 
     render() {
 
-        if (this.state.object.content !== undefined && this.state.compare.content !== undefined) {
+        if (this.state.object.content !== undefined) {
 
             return (
                 <div>
@@ -73,6 +85,7 @@ export default class ObjectDetailEdit extends Component {
                         <Row>
                             <Col></Col>
                             <Col className='Content'>
+
                                 <button onClick={this.handleSave}>Save changes</button>
 
                                 <form className='AddObject'>
@@ -80,9 +93,9 @@ export default class ObjectDetailEdit extends Component {
                                     <input type='text' value={this.state.object.title} onChange={this.handleChangeTitle} className='Input' />
                                 </form>
 
-                                {this.state.object.content.map((item) =>
+                                {this.state.object.content.map((item, index) =>
 
-                                    <ContentEdit content={item} />
+                                    <ContentEdit id={index} content={item} update={this.update.bind(this)} />
 
                                 )}
                                 <img src={require('./assets/add.png')} alt='add.' className='add' onClick={this.addContent} />

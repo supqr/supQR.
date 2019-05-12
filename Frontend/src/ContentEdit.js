@@ -13,24 +13,44 @@ export default class ContentEdit extends Component {
     componentWillMount() {
 
         var object = this.props.content
-        object.title = this.props.content
-        this.setState({ object })
-
-    }
-
-    handleChangeTitle = (event) => {
-
-        var object = this.state.object
-        object.title = event.target.value
         this.setState({ object })
 
     }
 
     handleChangeValue = (event) => {
 
+        //TODO: ARRAY BEI BILD
         var object = this.state.object
         object.value = event.target.value
         this.setState({ object })
+        this.props.update(this.props.id, object)
+
+    }
+
+    handleAddText = () => {
+
+        var object = this.state.object
+        object.type = "TEXT"
+        this.setState({ object })
+        this.props.update(this.props.id, object)
+
+    }
+
+    handleAddImage = () => {
+
+        var object = this.state.object
+        object.type = "IMAGE"
+        this.setState({ object })
+        this.props.update(this.props.id, object)
+
+    }
+
+    handleAddVideo = () => {
+
+        var object = this.state.object
+        object.type = "VIDEO"
+        this.setState({ object })
+        this.props.update(this.props.id, object)
 
     }
 
@@ -41,6 +61,7 @@ export default class ContentEdit extends Component {
             return (
                 <div>
                     <img src={"http://localhost:80/api/object/media/" + this.state.object.value} alt='pic.' className='add' />
+                    <input type='file' value={this.state.object.value} onChange={this.handleChangeValue} />
                     <hr />
                 </div>
             )
@@ -49,7 +70,8 @@ export default class ContentEdit extends Component {
 
             return (
                 <div>
-                    <input type='text' value={this.state.object.value} onChange={this.handleChangeValue} />
+                    <p>{this.state.object.value}</p>
+                    <input type='file' value={this.state.object.value} onChange={this.handleChangeValue} />
                     <hr />
                 </div>
             )
@@ -63,14 +85,20 @@ export default class ContentEdit extends Component {
                 </div>
             )
 
-        } else {
+        } else if (this.props.content.type === 'TODO') {
 
             return (
                 <div>
-                    <img src={require('./assets/image.png')} alt='pic.' />
-                    <img src={require('./assets/video.png')} alt='video.' />
-                    <img src={require('./assets/text.png')} alt='text.' />
+                    <img onClick={this.handleAddImage} src={require('./assets/image.png')} alt='pic.' />
+                    <img onClick={this.handleAddVideo} src={require('./assets/video.png')} alt='video.' />
+                    <img onClick={this.handleAddText} src={require('./assets/text.png')} alt='text.' />
                 </div>
+            )
+
+        } else {
+
+            return (
+                <div />
             )
 
         }

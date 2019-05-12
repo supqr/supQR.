@@ -87,7 +87,7 @@ export default class ObjectOverview extends Component {
 
                                 {this.state.objects.map((item) =>
 
-                                    <Object item={item} history={this.props.history} reload={this.readObjects} />
+                                    <Object item={item} history={this.props.history} reload={this.readObjects.bind(this)} />
 
                                 )}
 

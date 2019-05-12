@@ -11,16 +11,19 @@ export default class Object extends Component {
     }
 
     editObject = () => {
-        //"TODO: DETAILANSICHT" + this.props.item.objectId
         this.props.history.push('/objectdetailedit/' + this.props.item.objectId)
     }
 
     deleteObject = () => {
-        /*
-        fetch('http://localhost:80/api/object/'+this.props.item.objectId, {
-            method: 'DELETE'
+
+        fetch('http://localhost:80/api/object/' + this.props.item.objectId, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
         })
-        */
+        this.props.reload()
+
     }
 
     navigate = () => {

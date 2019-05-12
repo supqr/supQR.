@@ -23,7 +23,14 @@ export default class ObjectOverview extends Component {
 
     readObjects = async () => {
 
-        fetch("http://localhost:80/api/object/me")
+        fetch("http://localhost:80/api/object/me", {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
             .then(response => response.json())
             .then(objects => this.setState({ objects }))
 
@@ -31,21 +38,22 @@ export default class ObjectOverview extends Component {
 
     handleAddObject = (event) => {
 
-        //TODO: UPLOAD
-        fetch('http://localhost:80/api/object/add', {
+        fetch('http://localhost:80/api/object/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
-            body: JSON.stringify(this.state.newObject),
+            body: JSON.stringify({
+                title: this.state.newObject
+            })
         }).then(response => response.json())
             .then(returned => this.setState({ returned }))
 
         if (this.state.returned.title !== undefined) {
             this.state.objects.push(this.state.returned)
         }
-        //TODO: UPLOAD
         event.preventDefault()
 
     }
@@ -59,34 +67,45 @@ export default class ObjectOverview extends Component {
     }
 
     render() {
-        return (
-            <div>
 
+
+        if (this.state.objects !== undefined) {
+            return (
+                <div>
+
+                    <Header />
+                    <Container>
+                        <Row>
+                            <Col></Col>
+                            <Col xs={6} className='Content'>
+
+                                <form onSubmit={this.handleAddObject} className='AddObject'>
+                                    <p className='Title'>NEW OBJECT</p>
+                                    <input type='text' value={this.state.newObject} onChange={this.handleChangeNewObject} className='Input' />
+                                    <input type='submit' value='ADD' className='Button' />
+                                </form>
+
+                                {this.state.objects.map((item) =>
+
+                                    <Object item={item} history={this.props.history} reload={this.readObjects} />
+
+                                )}
+
+                            </Col>
+                            <Col></Col>
+                        </Row>
+                    </Container>
+
+                </div >
+            )
+
+        } else {
+
+            return (
                 <Header />
-                <Container>
-                    <Row>
-                        <Col></Col>
-                        <Col xs={6} className='Content'>
+            )
 
-                            <form onSubmit={this.handleAddObject} className='AddObject'>
-                                <p className='Title'>NEW OBJECT</p>
-                                <input type='text' value={this.state.newObject} onChange={this.handleChangeNewObject} className='Input' />
-                                <input type='submit' value='ADD' className='Button' />
-                            </form>
-
-                            {this.state.objects.map((item) =>
-
-                                <Object item={item} history={this.props.history} />
-
-                            )}
-
-                        </Col>
-                        <Col></Col>
-                    </Row>
-                </Container>
-
-            </div >
-        )
+        }
     }
 
 }

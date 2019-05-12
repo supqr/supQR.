@@ -35,7 +35,7 @@ export default class ObjectDetailEdit extends Component {
 
     handleSave = (event) => {
 
-        //TODO
+        //TODO: AM JOEL SIM WIXSERVICE S GANZE OBJECT UESCHICKE
         event.preventDefault()
 
     }
@@ -49,6 +49,7 @@ export default class ObjectDetailEdit extends Component {
     }
 
     addContent = () => {
+
         var entry = {
             "type": "",
             "value": ""
@@ -56,6 +57,7 @@ export default class ObjectDetailEdit extends Component {
         var object = this.state.object
         object.content.push(entry)
         this.setState({ entry })
+
     }
 
     render() {
@@ -66,16 +68,12 @@ export default class ObjectDetailEdit extends Component {
                 <div>
 
                     <Header />
-                    {JSON.stringify(this.state.object) !== JSON.stringify(this.state.compare) &&
-                        <div style={{ backgroundColor: '#FFC6C8' }}>
-                            <a href={this.handleSave}>You have unsaved changes. Klick here to save</a>
-                        </div>
-                    }
 
                     <Container>
                         <Row>
                             <Col></Col>
                             <Col className='Content'>
+                                <button onClick={this.handleSave}>Save changes</button>
 
                                 <form className='AddObject'>
                                     <p className='Title'>TITLE</p>

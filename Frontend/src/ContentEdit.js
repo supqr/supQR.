@@ -54,6 +54,16 @@ export default class ContentEdit extends Component {
 
     }
 
+    handleDelete = () => {
+
+        var object = this.state.object
+        object.type = ""
+        object.value = ""
+        this.setState({ object })
+        this.props.update(this.props.id, object)
+
+    }
+
     render() {
 
         if (this.props.content.type === 'IMAGE') {
@@ -62,6 +72,7 @@ export default class ContentEdit extends Component {
                 <div>
                     <img src={"http://localhost:80/api/object/media/" + this.state.object.value} alt='pic.' className='add' />
                     <input type='file' value={this.state.object.value} onChange={this.handleChangeValue} />
+                    <button onClick={this.handleDelete}>DELETE</button>
                     <hr />
                 </div>
             )
@@ -72,6 +83,7 @@ export default class ContentEdit extends Component {
                 <div>
                     <p>{this.state.object.value}</p>
                     <input type='file' value={this.state.object.value} onChange={this.handleChangeValue} />
+                    <button onClick={this.handleDelete}>DELETE</button>
                     <hr />
                 </div>
             )
@@ -81,6 +93,7 @@ export default class ContentEdit extends Component {
             return (
                 <div>
                     <textarea value={this.state.object.value} onChange={this.handleChangeValue} style={{ width: '100%' }} />
+                    <button onClick={this.handleDelete}>DELETE</button>
                     <hr />
                 </div>
             )
@@ -92,6 +105,7 @@ export default class ContentEdit extends Component {
                     <img onClick={this.handleAddImage} src={require('./assets/image.png')} alt='pic.' />
                     <img onClick={this.handleAddVideo} src={require('./assets/video.png')} alt='video.' />
                     <img onClick={this.handleAddText} src={require('./assets/text.png')} alt='text.' />
+                    <button onClick={this.handleDelete}>DELETE</button>
                 </div>
             )
 

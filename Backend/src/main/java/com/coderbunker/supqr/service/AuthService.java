@@ -1,5 +1,15 @@
 package com.coderbunker.supqr.service;
 
+import static com.coderbunker.supqr.auth.User.UserType.USER;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+
+import javax.inject.Inject;
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.ServerErrorException;
+
+import org.jooq.generated.tables.pojos.User;
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.coderbunker.supqr.SupQrConfiguration;
 import com.coderbunker.supqr.annotation.Injectable;
 import com.coderbunker.supqr.auth.JwtService;
@@ -8,16 +18,10 @@ import com.coderbunker.supqr.rest.model.AuthTO;
 import com.coderbunker.supqr.rest.model.JwtTO;
 import com.coderbunker.supqr.rest.model.RegistrationTO;
 import com.coderbunker.supqr.service.model.Registration;
+
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jooq.generated.tables.pojos.User;
-import org.mindrot.jbcrypt.BCrypt;
-
-import javax.inject.Inject;
-import javax.ws.rs.BadRequestException;
-
-import static com.coderbunker.supqr.auth.User.UserType.USER;
 
 @Slf4j
 @Builder
@@ -50,6 +54,11 @@ public class AuthService {
 	public JwtTO register (RegistrationTO registrationTO) {
 		log.info("User {} trying to register using password", registrationTO.getUsername());
 		Registration registration = mapToRegistration(registrationTO);
+
+		if (userRepository.isUsernameUsed(registration.getUsername())) {
+			throw new ServerErrorException(BAD_REQUEST);
+		}
+
 		Integer userId = userRepository.createUser(registration);
 		String token = jwtService.generateToken(USER, registration.getUsername(), userId, configuration.getSessionDuration());
 		return JwtTO

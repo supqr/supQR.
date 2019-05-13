@@ -1,15 +1,17 @@
 package com.coderbunker.supqr.database;
 
-import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
-import com.coderbunker.supqr.annotation.Injectable;
-import com.coderbunker.supqr.service.model.Registration;
+import static org.jooq.generated.Tables.USER;
+
+import java.util.Optional;
+
+import javax.inject.Inject;
+
 import org.jooq.generated.tables.pojos.User;
 import org.jooq.generated.tables.records.UserRecord;
 
-import javax.inject.Inject;
-import java.util.Optional;
-
-import static org.jooq.generated.Tables.USER;
+import com.bendb.dropwizard.jooq.jersey.DSLContextFactory;
+import com.coderbunker.supqr.annotation.Injectable;
+import com.coderbunker.supqr.service.model.Registration;
 
 
 @Injectable
@@ -38,5 +40,9 @@ public class UserRepository extends AbstractRepository {
 			.setPassword(registration.getHashedPassword());
 		userRecord.insert();
 		return userRecord.getUserId();
+	}
+
+	public boolean isUsernameUsed (String identification) {
+		return getUser(identification).isPresent();
 	}
 }

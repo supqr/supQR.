@@ -1,5 +1,17 @@
 package com.coderbunker.supqr.service;
 
+import static java.util.stream.Collectors.toList;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
+
+import java.io.ByteArrayInputStream;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.ws.rs.ServerErrorException;
+
+import org.jooq.generated.tables.pojos.Feedback;
+
 import com.coderbunker.supqr.annotation.Injectable;
 import com.coderbunker.supqr.auth.User;
 import com.coderbunker.supqr.auth.User.UserType;
@@ -12,16 +24,8 @@ import com.coderbunker.supqr.rest.model.ObjectEditTO;
 import com.coderbunker.supqr.rest.model.ObjectSummaryTO;
 import com.coderbunker.supqr.rest.model.ObjectTO;
 import com.coderbunker.supqr.rest.model.RatingTO;
+
 import lombok.RequiredArgsConstructor;
-import org.jooq.generated.tables.pojos.Feedback;
-
-import javax.inject.Inject;
-import javax.ws.rs.ServerErrorException;
-import javax.ws.rs.core.Response.Status;
-import java.io.ByteArrayInputStream;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 @Injectable
@@ -80,6 +84,10 @@ public class ObjectService {
 	public ObjectSummaryTO createObject (Integer userId, CreateObjectTO createObjectTO) {
 		int articleId = objectRepository.createObject(userId, createObjectTO.getTitle());
 
+		if (objectRepository.isTitleUsed(createObjectTO.getTitle())) {
+			throw new ServerErrorException(BAD_REQUEST);
+		}
+
 		return ObjectSummaryTO
 			.builder()
 			.title(createObjectTO.getTitle())
@@ -100,14 +108,14 @@ public class ObjectService {
 
 	public void deleteObject (Integer objectId, User user) {
 		if (!objectRepository.isUserAuthorOfArticle(objectId, user.getUserId()) && user.getUserType() != UserType.ADMIN) {
-			throw new ServerErrorException(Status.UNAUTHORIZED);
+			throw new ServerErrorException(UNAUTHORIZED);
 		}
 		objectRepository.deleteObject(objectId);
 	}
 
 	public void editObject (Integer objectId, User user, ObjectEditTO objectEditTO) {
 		if (!objectRepository.isUserAuthorOfArticle(objectId, user.getUserId()) && user.getUserType() != UserType.ADMIN) {
-			throw new ServerErrorException(Status.UNAUTHORIZED);
+			throw new ServerErrorException(UNAUTHORIZED);
 		}
 		objectRepository.deleteContent(objectId);
 		objectRepository.updateTitle(objectId, objectEditTO.getTitle());

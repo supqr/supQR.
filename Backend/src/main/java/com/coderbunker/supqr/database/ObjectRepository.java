@@ -123,7 +123,8 @@ public class ObjectRepository extends AbstractRepository {
 	public void deleteContent (Integer articleId) {
 		getContext()
 			.deleteFrom(CONTENT)
-			.where(CONTENT.ARTICLE_ID.eq(articleId));
+			.where(CONTENT.ARTICLE_ID.eq(articleId))
+			.execute();
 	}
 
 	public int createContent (Integer articleId, Integer orderId, boolean isMedia) {

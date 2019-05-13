@@ -8,6 +8,7 @@ import com.coderbunker.supqr.service.AuthService;
 import lombok.RequiredArgsConstructor;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -24,13 +25,13 @@ public class AuthResource {
 	private final AuthService authService;
 
 	@POST
-	public JwtTO authenticate (AuthTO authTO) {
+	public JwtTO authenticate (@Valid AuthTO authTO) {
 		return authService.authenticate(authTO);
 	}
 
 	@POST
 	@Path("register")
-	public JwtTO register (RegistrationTO registrationTO) {
+	public JwtTO register (@Valid RegistrationTO registrationTO) {
 		return authService.register(registrationTO);
 	}
 

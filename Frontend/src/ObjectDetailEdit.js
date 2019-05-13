@@ -103,7 +103,7 @@ export default class ObjectDetailEdit extends Component {
 
                                 )}
 
-                                <button onClick={this.addContent} className='buttonEdit' style={{ width: '100%', backgroundColor: '#BBBBBB' }}>ADD CONTENT</button>
+                                <button onClick={this.addContent} className='buttonEdit' style={{ width: '100%', backgroundColor: '#BBBBBB', marginTop: '5%' }}>ADD CONTENT</button>
 
                             </Col>
                             <Col></Col>

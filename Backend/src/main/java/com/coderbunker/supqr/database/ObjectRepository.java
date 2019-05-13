@@ -7,6 +7,7 @@ package com.coderbunker.supqr.database;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.IMAGE;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.TEXT;
 import static com.coderbunker.supqr.rest.model.ContentTO.Type.VIDEO;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static org.jooq.generated.tables.Article.ARTICLE;
 import static org.jooq.generated.tables.Content.CONTENT;
 import static org.jooq.generated.tables.MediaContent.MEDIA_CONTENT;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.ServerErrorException;
 
 import org.jooq.Record;
 import org.jooq.generated.tables.pojos.Article;
@@ -155,6 +157,10 @@ public class ObjectRepository extends AbstractRepository {
 	}
 
 	public void updateTitle (Integer objectId, String title) {
+		if (isTitleUsed(title)) {
+			throw new ServerErrorException(BAD_REQUEST);
+		}
+
 		getContext()
 			.update(ARTICLE)
 			.set(ARTICLE.TITLE, title)

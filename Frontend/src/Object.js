@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-var QRCode = require('qrcode.react');
+var QRCode = require('qrcode.react')
+var IP = '10.1.0.26:3000'
 
 export default class Object extends Component {
 
@@ -33,7 +34,7 @@ export default class Object extends Component {
     render() {
         return (
             <div className='Object'>
-                <QRCode onClick={this.navigate} value={'http://localhost:3000/objectdetailview/' + this.props.item.objectId} className='Icon' />
+                <QRCode onClick={this.navigate} value={'http://' + IP + '/objectdetailview/' + this.props.item.objectId} className='Icon' />
                 <p className='objectName'>{this.props.item.title}</p>
                 <button onClick={this.editObject} className='buttonEdit'>EDIT</button>
                 <button onClick={this.deleteObject} className='buttonDelete'>DELETE</button>

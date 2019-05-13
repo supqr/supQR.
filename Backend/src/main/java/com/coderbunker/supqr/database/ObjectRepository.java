@@ -53,6 +53,7 @@ public class ObjectRepository extends AbstractRepository {
 			.from(CONTENT)
 			.leftJoin(TEXT_CONTENT).on(TEXT_CONTENT.CONTENT_ID.eq(CONTENT.CONTENT_ID))
 			.leftJoin(MEDIA_CONTENT).on(MEDIA_CONTENT.CONTENT_ID.eq(CONTENT.CONTENT_ID))
+			.where(CONTENT.ARTICLE_ID.eq(articleId))
 			.orderBy(CONTENT.ORDER_ID.asc())
 			.fetch(this::toContentTO);
 		return ObjectTO

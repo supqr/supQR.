@@ -28,7 +28,7 @@ CREATE TABLE feedback
     text_value        TEXT,
 
     FOREIGN KEY (feedback_author_id) REFERENCES user (user_id),
-    FOREIGN KEY (article_id) REFERENCES article (article_id)
+    FOREIGN KEY (article_id) REFERENCES article (article_id) ON DELETE CASCADE
 );
 
 CREATE TABLE content
@@ -38,7 +38,7 @@ CREATE TABLE content
     order_id   INT                    NOT NULL,
     type       ENUM ('MEDIA', 'TEXT') NOT NULL,
 
-    FOREIGN KEY (article_id) REFERENCES article (article_id),
+    FOREIGN KEY (article_id) REFERENCES article (article_id) ON DELETE CASCADE,
     UNIQUE (article_id, order_id)
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE media_content
     media_content_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     content_id       INT,
 
-    FOREIGN KEY (content_id) REFERENCES content (content_id)
+    FOREIGN KEY (content_id) REFERENCES content (content_id) ON DELETE CASCADE
 );
 
 CREATE TABLE text_content
@@ -56,5 +56,5 @@ CREATE TABLE text_content
     text_value            TEXT,
     content_id      INT,
 
-    FOREIGN KEY (content_id) REFERENCES content (content_id)
+    FOREIGN KEY (content_id) REFERENCES content (content_id) ON DELETE CASCADE
 );

@@ -19,22 +19,15 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-import javax.servlet.DispatcherType;
-import javax.servlet.FilterRegistration;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.EnumSet;
 import java.util.Optional;
-
-import static io.dropwizard.jersey.filter.AllowedMethodsFilter.ALLOWED_METHODS_PARAM;
-import static org.eclipse.jetty.servlets.CrossOriginFilter.ALLOWED_HEADERS_PARAM;
 
 @Slf4j
 public class SupQrApplication extends Application<SupQrConfiguration> {
@@ -68,13 +61,6 @@ public class SupQrApplication extends Application<SupQrConfiguration> {
 
 	@Override
 	public void run (SupQrConfiguration configuration, Environment environment) {
-		FilterRegistration.Dynamic filter = environment.servlets().addFilter("CORSFilter", CrossOriginFilter.class);
-
-		filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, environment.getApplicationContext().getContextPath() + "*");
-		filter.setInitParameter(ALLOWED_METHODS_PARAM, "GET,PUT,POST,OPTIONS");
-		filter.setInitParameter(ALLOWED_HEADERS_PARAM, "Origin, Content-Type, Accept");
-
-
 		environment.jersey().setUrlPattern("/api/*");
 
 		initializeAuthentication(environment);

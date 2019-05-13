@@ -70,9 +70,9 @@ export default class ContentEdit extends Component {
 
             return (
                 <div>
-                    <img src={"http://localhost:80/api/object/media/" + this.state.object.value} alt='pic.' className='add' />
-                    <input type='file' value={this.state.object.value} onChange={this.handleChangeValue} />
-                    <button onClick={this.handleDelete}>DELETE</button>
+                    <img src={"http://localhost:80/api/object/media/" + this.state.object.value} alt='pic.' className='add' /><br />
+                    <input type='file' onChange={this.handleChangeValue} />
+                    <button onClick={this.handleDelete} className='buttonDelete' style={{ width: '100%', color: '#FF7C9B' }}>DELETE</button>
                     <hr />
                 </div>
             )
@@ -82,8 +82,8 @@ export default class ContentEdit extends Component {
             return (
                 <div>
                     <p>{this.state.object.value}</p>
-                    <input type='file' value={this.state.object.value} onChange={this.handleChangeValue} />
-                    <button onClick={this.handleDelete}>DELETE</button>
+                    <input type='file' onChange={this.handleChangeValue} />
+                    <button onClick={this.handleDelete} className='buttonDelete' style={{ width: '100%', color: '#FF7C9B' }}>DELETE</button>
                     <hr />
                 </div>
             )
@@ -93,7 +93,7 @@ export default class ContentEdit extends Component {
             return (
                 <div>
                     <textarea value={this.state.object.value} onChange={this.handleChangeValue} style={{ width: '100%' }} />
-                    <button onClick={this.handleDelete}>DELETE</button>
+                    <button onClick={this.handleDelete} className='buttonDelete' style={{ width: '100%', color: '#FF7C9B' }}>DELETE</button>
                     <hr />
                 </div>
             )
@@ -101,11 +101,11 @@ export default class ContentEdit extends Component {
         } else if (this.props.content.type === 'TODO') {
 
             return (
-                <div>
-                    <img onClick={this.handleAddImage} src={require('./assets/image.png')} alt='pic.' />
-                    <img onClick={this.handleAddVideo} src={require('./assets/video.png')} alt='video.' />
-                    <img onClick={this.handleAddText} src={require('./assets/text.png')} alt='text.' />
-                    <button onClick={this.handleDelete}>DELETE</button>
+                <div style={{ border: '1px solid #FF7C9B', marginBottom: '7%', paddingTop: '3%' }}>
+                    <img onClick={this.handleAddImage} src={require('./assets/image.png')} alt='pic.' style={{ width: '15%', marginLeft: '16.4%' }} />
+                    <img onClick={this.handleAddVideo} src={require('./assets/video.png')} alt='video.' style={{ width: '11%', marginLeft: '16.4%' }} />
+                    <img onClick={this.handleAddText} src={require('./assets/text.png')} alt='text.' style={{ width: '8%', marginLeft: '16.4%' }} />
+                    <button onClick={this.handleDelete} className='buttonDelete' style={{ width: '100%', color: '#FF7C9B' }}>DELETE</button>
                 </div>
             )
 

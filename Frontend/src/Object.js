@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 var QRCode = require('qrcode.react')
-var IP = '10.1.0.26:3000'
+var IP = 'localhost:3000'
 
 export default class Object extends Component {
 

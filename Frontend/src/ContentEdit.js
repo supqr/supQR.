@@ -19,17 +19,27 @@ export default class ContentEdit extends Component {
 
     handleChangeValue = (event) => {
 
-        console.log("VALUE" + event.target.value)
         //TODO: ARRAY BEI BILD
+        var object = this.state.object
         if (this.props.content.type === 'IMAGE') {
 
+            var file = event.target.files[0]
+            var reader = new FileReader();
 
-            console.log("HIER DU WIXXER")
+            var id = this.props.id
+            reader.addEventListener("load", function () {
+                object.value = reader.result.replace(reader.result.split(",")[0] + ',', '')
+                document.getElementById(id).src = reader.result
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
 
 
+        } else {
+            object.value = event.target.value
         }
-        var object = this.state.object
-        object.value = event.target.value
         this.setState({ object })
         this.props.update(this.props.id, object)
 
@@ -78,7 +88,7 @@ export default class ContentEdit extends Component {
 
             return (
                 <div className='Object' style={{ width: '100%', marginLeft: 0 }}>
-                    <img src={"http://localhost:80/api/object/media/" + this.state.object.value} alt='pic.' className='add' /><br />
+                    <img src={"http://localhost:80/api/object/media/" + this.state.object.value} alt='pic.' className='add' id={this.props.id} /><br />
                     <input type='file' onChange={this.handleChangeValue} />
                     <button onClick={this.handleDelete} className='buttonDelete' style={{ width: '100%', color: '#FF7C9B' }}>DELETE</button>
                 </div>

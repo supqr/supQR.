@@ -1,11 +1,11 @@
 package com.coderbunker.supqr.rest.model;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -15,8 +15,7 @@ public class ContentUploadTO {
 
 	@NotNull
 	private Type type;
-	private String text;
-	private byte[] data;
+	private String value;
 
 	public enum Type {
 		TEXT, IMAGE, VIDEO

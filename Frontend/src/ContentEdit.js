@@ -19,6 +19,7 @@ export default class ContentEdit extends Component {
 
     handleChangeValue = (event) => {
 
+        console.log("VALUE" + event.target.value)
         //TODO: ARRAY BEI BILD
         if (this.props.content.type === 'IMAGE') {
             console.log()

@@ -32,6 +32,12 @@ export default class ObjectDetailEdit extends Component {
 
     handleSave = (event) => {
 
+        var test = {
+            "title": this.state.object.title,
+            "content": this.state.object.content
+        }
+        console.log("TEST" + test)
+
         var url = this.props.history.location.pathname.split("/")
         fetch('http://localhost:80/api/object/' + url[2], {
             method: 'PUT',
@@ -40,7 +46,7 @@ export default class ObjectDetailEdit extends Component {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
-            body: JSON.stringify(this.state.object),
+            body: JSON.stringify(test)
         })
         event.preventDefault()
 

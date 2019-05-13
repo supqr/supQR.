@@ -22,9 +22,12 @@ export default class ContentEdit extends Component {
         console.log("VALUE" + event.target.value)
         //TODO: ARRAY BEI BILD
         if (this.props.content.type === 'IMAGE') {
-            console.log()
+
+
+            console.log("HIER DU WIXXER")
+
+
         }
-        //TODO: ARRAY BEI BILD
         var object = this.state.object
         object.value = event.target.value
         this.setState({ object })

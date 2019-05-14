@@ -80,9 +80,9 @@ export default class ObjectDetailEdit extends Component {
                                     <input type='text' value={this.state.object.title} onChange={this.handleChangeTitle} className='Input' />
                                 </form>
 
-                                {this.state.object.content.map((item) =>
+                                {this.state.object.content.map((item, index) =>
 
-                                    <ContentEdit content={item} />
+                                    <ContentEdit content={item} key={index} />
 
                                 )}
                                 <img src={require('./assets/add.png')} alt='add.' className='add' onClick={this.addContent} />

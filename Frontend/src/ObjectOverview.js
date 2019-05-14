@@ -76,23 +76,22 @@ export default class ObjectOverview extends Component {
                     <Header />
                     <Container>
                         <Row>
-                            <Col></Col>
-                            <Col xs={6} className='Content'>
+                            <Col className='Content' md={{ span: 6, offset: 3 }} xs={{ span: 10, offset: 1 }}>
 
                                 <form onSubmit={this.handleAddObject} className='AddObject'>
                                     <p className='Title'>NEW OBJECT</p>
+                                    <br />
                                     <input type='text' value={this.state.newObject} onChange={this.handleChangeNewObject} className='Input' />
                                     <input type='submit' value='ADD' className='Button' />
                                 </form>
 
-                                {this.state.objects.map((item) =>
+                                {this.state.objects.map((item, index) =>
 
-                                    <Object item={item} history={this.props.history} reload={this.readObjects} />
+                                    <Object item={item} history={this.props.history} reload={this.readObjects} key={index} />
 
                                 )}
 
                             </Col>
-                            <Col></Col>
                         </Row>
                     </Container>
 

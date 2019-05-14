@@ -28,14 +28,15 @@ export default class Login extends Component {
             },
             body: JSON.stringify(entry),
         }).then(response => response.json())
-            .then(returned => this.setState({ returned }))
-
-        if (this.state.returned.token !== undefined) {
-            localStorage.setItem('token', this.state.returned.token)
-            this.props.history.push('/objectoverview')
-        }
+            .then(returned => {
+                this.setState({ returned });
+                if (this.state.returned.token !== undefined) {
+                    localStorage.setItem('token', this.state.returned.token)
+                    console.log("Hier objectoverview")
+                    this.props.history.push('/objectoverview')
+                }
+            })
         event.preventDefault()
-
     }
 
     handleChangeIdentification = (event) => {
@@ -57,12 +58,10 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-
                 <Header />
                 <Container>
                     <Row>
-                        <Col></Col>
-                        <Col className='Content'>
+                        <Col className='Content' md={{ span: 4, offset: 4 }} xs={{ span: 8, offset: 2 }}>
 
                             <form onSubmit={this.handleLogin} className='Login'>
                                 <h4 className='LoginTitle'>SCAN YOUR FUTURE.</h4>
@@ -77,12 +76,9 @@ export default class Login extends Component {
                             </form>
 
                         </Col>
-                        <Col></Col>
                     </Row>
                 </Container>
-
             </div >
         )
     }
-
 }

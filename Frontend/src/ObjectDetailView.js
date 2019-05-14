@@ -41,22 +41,20 @@ export default class ObjectDetailView extends Component {
 
                     <Container>
                         <Row>
-                            <Col></Col>
-                            <Col className='Content'>
+                            <Col className='Content' md={{ span: 4, offset: 4 }} xs={{ span: 8, offset: 2 }}>
 
                                 <div className='AddObject'>
                                     <img src={require('./assets/icon.png')} alt='objectIcon.' className='Icon' />
                                     <p className='objectName'>{this.state.object.title}</p>
                                 </div>
 
-                                {this.state.object.content.map((item) =>
+                                {this.state.object.content.map((item, index) =>
 
-                                    <ContentView content={item} />
+                                    <ContentView content={item} key={index} />
 
                                 )}
 
                             </Col>
-                            <Col></Col>
                         </Row>
                     </Container>
                 </div >

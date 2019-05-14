@@ -102,8 +102,7 @@ export default class Register extends Component {
                 <Header />
                 <Container>
                     <Row>
-                        <Col></Col>
-                        <Col className='Content'>
+                        <Col className='Content' md={{ span: 4, offset: 4 }} xs={{ span: 8, offset: 2 }}>
 
                             <form onSubmit={this.handleRegister} className='Login'>
                                 <h4 className='LoginTitle'>SCAN YOUR FUTURE.</h4>
@@ -122,12 +121,10 @@ export default class Register extends Component {
                             </form>
 
                         </Col>
-                        <Col></Col>
                     </Row>
                 </Container>
 
             </div >
         )
     }
-
 }

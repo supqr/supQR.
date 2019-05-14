@@ -100,12 +100,11 @@ export default class ObjectDetailEdit extends Component {
                                     <input type='text' value={this.state.object.title} onChange={this.handleChangeTitle} className='Input' style={{ marginBottom: '7%' }} />
                                 </form>
 
+
                                 <hr />
 
                                 {this.state.object.content.map((item, index) =>
-
-                                    <ContentEdit id={index} content={item} update={this.update.bind(this)} />
-
+                                    <ContentEdit id={index} content={item} update={this.update.bind(this)} key={index} />
                                 )}
 
                                 <button onClick={this.addContent} className='buttonEdit' style={{ width: '100%', backgroundColor: '#BBBBBB', marginTop: '5%' }}>ADD CONTENT</button>

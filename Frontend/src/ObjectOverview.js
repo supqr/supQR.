@@ -54,6 +54,12 @@ export default class ObjectOverview extends Component {
         if (this.state.returned.title !== undefined) {
             this.state.objects.push(this.state.returned)
         }
+
+        var newObject = this.state.newObject
+        newObject = ""
+        this.setState({ newObject })
+
+        this.readObjects()
         event.preventDefault()
 
     }
@@ -87,7 +93,7 @@ export default class ObjectOverview extends Component {
 
                                 {this.state.objects.map((item) =>
 
-                                    <Object item={item} history={this.props.history} reload={this.readObjects} />
+                                    <Object item={item} history={this.props.history} reload={this.readObjects.bind(this)} />
 
                                 )}
 

@@ -12,7 +12,13 @@ export default class ConentView extends Component {
 
     render() {
 
-        if (this.props.content.type === 'IMAGE') {
+        if (this.props.content.value === 'DELETED') {
+
+            return (
+                <div />
+            )
+
+        } else if (this.props.content.type === 'IMAGE') {
 
             return (
                 <div>

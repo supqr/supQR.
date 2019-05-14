@@ -4,7 +4,6 @@ import Header from './Header';
 import ContentView from './ContentView';
 import { Container, Row, Col } from 'react-bootstrap';
 
-
 export default class ObjectDetailView extends Component {
 
     constructor() {

@@ -11,6 +11,7 @@ import io.dropwizard.auth.Auth;
 import lombok.RequiredArgsConstructor;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -59,13 +60,13 @@ public class ObjectResource {
 
 	@POST
 	@Path("/")
-	public ObjectSummaryTO createObject (@Auth User user, CreateObjectTO createObjectTO) {
+	public ObjectSummaryTO createObject (@Auth User user, @Valid CreateObjectTO createObjectTO) {
 		return objectService.createObject(user.getUserId(), createObjectTO);
 	}
 
 	@PUT
 	@Path("{objectId}")
-	public void editObject (@Auth User user, ObjectEditTO objectEditTO, @PathParam("objectId") Integer objectId) {
+	public void editObject (@Auth User user, @Valid ObjectEditTO objectEditTO, @PathParam("objectId") Integer objectId) {
 		objectService.editObject(objectId, user, objectEditTO);
 	}
 }

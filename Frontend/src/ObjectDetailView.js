@@ -4,6 +4,8 @@ import Header from './Header';
 import ContentView from './ContentView';
 import { Container, Row, Col } from 'react-bootstrap';
 
+var IP = '10.1.0.6:80';
+
 export default class ObjectDetailView extends Component {
 
     constructor() {
@@ -23,7 +25,7 @@ export default class ObjectDetailView extends Component {
     readObject = async () => {
 
         var url = this.props.history.location.pathname.split("/")
-        fetch("http://localhost:80/api/object/" + url[2])
+        fetch("http://" + IP + "/api/object/" + url[2])
             .then(response => response.json())
             .then(object => this.setState({ object }))
 

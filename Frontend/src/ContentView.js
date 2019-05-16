@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+var IP = '10.1.0.6:80';
+
 export default class ConentView extends Component {
 
     constructor() {
@@ -22,7 +24,7 @@ export default class ConentView extends Component {
 
             return (
                 <div>
-                    <img src={"http://localhost:80/api/object/media/" + this.props.content.value} alt='pic.' className='add' />
+                    <img src={"http://" + IP + "/api/object/media/" + this.props.content.value} alt='pic.' className='add' />
                     <hr />
                 </div>
             )
